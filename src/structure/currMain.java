@@ -47,7 +47,10 @@ public class currMain {
 	}
 
 	private static NoteRule doRandomMorphs() {
-		String initData = "abcdefghi";
+//		String initData = "abcdefghi";
+		
+		String initData = "sorahavok";
+		
 		NoteData initialNoteData = new NoteData(initData);
 		NoteRule morphingRule = doRandomMorph(initialNoteData,
 				new NoteData(getRandSet(initData, 3)));
