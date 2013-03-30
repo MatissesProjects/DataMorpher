@@ -1,12 +1,12 @@
 package abstracts;
 
+import static structure.currMain.log;
 import interfaces.Morpher;
-import structure.currMain;
 
 /**
- * A rule is something that has an identifier and holds some kind of data, the
- * identifier could be something like a character, and the data could be
- * something like the expanded string meaning of that single character
+ * A rule is something that has an identifier and holds some kind of data, the identifier could be
+ * something like a character, and the data could be something like the expanded string meaning of
+ * that single character
  * 
  * @author Matisse
  * 
@@ -22,8 +22,7 @@ public abstract class Rule<T> implements Morpher<T> {
 	private boolean morphHasOccured;
 
 	/**
-	 * Abstract Rule, this is the idea that there is a rule to change something
-	 * like F -> f+S
+	 * Abstract Rule, this is the idea that there is a rule to change something like F -> f+S
 	 * 
 	 * @param ident
 	 *            - identifier
@@ -32,35 +31,28 @@ public abstract class Rule<T> implements Morpher<T> {
 	public Rule(T ruleData) {
 		data = ruleData;
 		morphHasOccured = false;
-		if (currMain.VERBOSE) {
-			System.out.println("data: " + data);
-		}
+		log.finest("data: " + data);
 	}
 
 	/**
-	 * Morph is the abstract concept that we want to enact. It will, in some way
-	 * or another morph the data.
+	 * Morph is the abstract concept that we want to enact. It will, in some way or another morph
+	 * the data.
 	 * 
 	 * @param morpher
 	 */
 	@Override
 	public void morph(T input) {
 		morphHasOccured = true;
-		if (currMain.VERBOSE) {
-			System.out.println("input: " + input);
-		}
+		log.finest("input: " + input);
 	}
 
 	/**
-	 * if this morph has been done it will be true, if it has not, it will still
-	 * be false
+	 * if this morph has been done it will be true, if it has not, it will still be false
 	 * 
 	 * @return morphHasOccured
 	 */
 	public boolean morphHasOccured() {
-		if (currMain.VERBOSE) {
-			System.out.println("Morph has occured");
-		}
+		log.finest("Morph has occured");
 		return morphHasOccured;
 	}
 

@@ -1,8 +1,8 @@
 package morphers.addData.grammarRules;
 
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-import structure.currMain;
 
 /**
  * Context free grammar type rule. This should allow for things like a -> bde
@@ -18,10 +18,8 @@ public class GrammarReplace extends NoteMorpherRule {
 	public GrammarReplace(NoteData ruleData, String toReplace, String replacementStr) {
 		super(ruleData);
 		rule = new GrammarRule(toReplace, replacementStr);
-		if (currMain.VERBOSE) {
-			System.out.println("toReplace: " + toReplace);
-			System.out.println("replacementStr: " + replacementStr);
-		}
+		log.fine("toReplace: " + toReplace);
+		log.fine("replacementStr: " + replacementStr);
 	}
 
 	@Override

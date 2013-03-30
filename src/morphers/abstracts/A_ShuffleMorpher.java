@@ -1,5 +1,7 @@
 package morphers.abstracts;
 
+import static structure.currMain.log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +10,7 @@ import noteStuff.NoteMorpherRule;
 
 /**
  * Abstract concept of a shuffle morph<br>
- * This takes some data and shuffles it in some way, to be defined by the
- * subclasses
+ * This takes some data and shuffles it in some way, to be defined by the subclasses
  * 
  * @author Matisse
  * 
@@ -26,6 +27,7 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	 */
 	public A_ShuffleMorpher(NoteData ruleData, int start, int end) {
 		super(ruleData);
+		log.severe("Start: " + start + " end: " + end);		
 		this.start = Math.min(start, end);
 		this.end = Math.max(start, end);
 	}
@@ -55,14 +57,14 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	}
 
 	/**
-	 * gets the data to shuffle, potentially add rules into here, this would be
-	 * an interesting morphing zone
+	 * gets the data to shuffle, potentially add rules into here, this would be an interesting
+	 * morphing zone
 	 * 
 	 * @return
 	 */
 	protected List<NoteData> getDataToShuffle() {
 		List<NoteData> returner = new ArrayList<>(end - start + 1);
-		for (int i = start; i < Math.min(data.length(), end + 1); ++i) {
+		for (int i = start; i < Math.min(data.length(), end); ++i) {
 			returner.add(new NoteData(data.get(i)));
 		}
 		return returner;

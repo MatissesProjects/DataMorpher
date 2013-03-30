@@ -1,9 +1,8 @@
 package morphers.addData.smooth;
 
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-
-import structure.currMain;
 
 public class BasicSmooth extends NoteMorpherRule {
 
@@ -28,8 +27,7 @@ public class BasicSmooth extends NoteMorpherRule {
 			}
 		}
 		sb.append(data.get(data.length() - 1));
-		if (currMain.VERBOSE)
-			System.out.println(sb);
+		log.fine(sb.toString());
 		data.setNoteData(sb.toString());
 	}
 }

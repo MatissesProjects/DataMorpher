@@ -1,12 +1,13 @@
 package morphers.removingSections;
 
+
+import static structure.currMain.log;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-
-import structure.currMain;
 
 /**
  * Takes the number of separate tokens and sums them, finding the greatest one (not caring about who
@@ -44,9 +45,7 @@ public class TrimTheMode extends NoteMorpherRule {
 			else
 				countMap.put(ch, 1);
 		}
-		if (currMain.VERBOSE) {
-			System.out.println("countMap: " + countMap);
-		}
+		log.fine("countMap: " + countMap);
 	}
 
 	/**
@@ -61,18 +60,14 @@ public class TrimTheMode extends NoteMorpherRule {
 				returner = ch;
 			}
 		}
-		if (currMain.VERBOSE) {
-			System.out.println("returner: " + returner);
-		}
+		log.fine("returner: " + returner);
 		return returner;
 	}
 
 	@Override
 	protected void noteMorph(NoteData DONT_CARE) {
 		char toTrim = getTokenToTrim();
-		if (currMain.VERBOSE) {
-			System.out.println("trimming: " + toTrim);
-		}
+		log.fine("trimming: " + toTrim);
 		// toTrim+ = the regex 1 or more
 		data.replaceAll((toTrim + "+"), toTrim + "");
 		if (data.length() < 4)

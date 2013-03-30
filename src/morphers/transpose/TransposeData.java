@@ -1,9 +1,9 @@
 package morphers.transpose;
 
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
 import structure.MathHelper;
-import structure.currMain;
 
 /**
  * This transpose is to take the data from one segment and move it to another segment.
@@ -72,12 +72,10 @@ public class TransposeData extends NoteMorpherRule {
 			endData.setNoteData(data.getRange(endIndex, transposeTo));
 		}
 		data.setNoteData("" + startData + endData + transposedData + lastData);
-		if (currMain.VERBOSE) {
-			System.out.println("beginIndex: " + beginIndex + " endIndex: " + endIndex
-					+ " transposeTo: " + transposeTo + "\ntransposedData: " + transposedData
-					+ " startData: " + startData + " endData: " + endData + " lastData: "
-					+ lastData);
-			System.out.println("resulting data:  " + data + "\n\n");
-		}
+		
+		log.finest("beginIndex: " + beginIndex + " endIndex: " + endIndex + " transposeTo: "
+				+ transposeTo + "\ntransposedData: " + transposedData + " startData: " + startData
+				+ " endData: " + endData + " lastData: " + lastData);
+		log.fine("resulting data:  " + data + "\n\n");
 	}
 }

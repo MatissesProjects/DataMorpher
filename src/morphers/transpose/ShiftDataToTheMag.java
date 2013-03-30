@@ -1,10 +1,10 @@
 package morphers.transpose;
 
 import static structure.MathHelper.rand;
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
 import structure.MathHelper;
-import structure.currMain;
 
 /**
  * Takes data and shifts a subset of it by the magnitude
@@ -25,9 +25,9 @@ public class ShiftDataToTheMag extends NoteMorpherRule {
 	/**
 	 * the new magnitude is the direction the shift occurs in.
 	 * 
-	 * @Note If you use a negative magnitude it is possible to lose data because
-	 *       it will shift beyond a, if using positive magnitude it can go
-	 *       beyond z and it gets cut out in either case
+	 * @Note If you use a negative magnitude it is possible to lose data because it will shift
+	 *       beyond a, if using positive magnitude it can go beyond z and it gets cut out in either
+	 *       case
 	 * 
 	 * @param ruleData
 	 * @param start
@@ -49,9 +49,7 @@ public class ShiftDataToTheMag extends NoteMorpherRule {
 		start = rand.nextInt(1 + data.length() / 4);
 		end = start + rand.nextInt(1 + data.length() / 4);
 		newMagnitude = MathHelper.plusOrMinus(MAX_SHIFT);
-		if (currMain.VERBOSE)
-			System.out.println("start: " + start + " end: " + end + " newMagnitude: "
-					+ newMagnitude);
+		log.fine("start: " + start + " end: " + end + " newMagnitude: " + newMagnitude);
 	}
 
 	@Override

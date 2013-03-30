@@ -1,18 +1,18 @@
 package morphers.addData.smooth;
 
+import static structure.currMain.log;
+
 import java.util.Collections;
 import java.util.List;
 
 import morphers.abstracts.A_ShuffleMorpher;
 import noteStuff.NoteData;
-import structure.currMain;
 
 public class Sort extends A_ShuffleMorpher {
 
 	public Sort(NoteData ruleData, int start, int end) {
 		super(ruleData, start, end);
-		if (currMain.VERBOSE)
-			System.out.println("start: " + start + " end: " + end);
+		log.fine("start: " + start + " end: " + end);
 	}
 
 	@Override
@@ -21,8 +21,7 @@ public class Sort extends A_ShuffleMorpher {
 		NoteData returner = new NoteData();
 		for (NoteData d : bag)
 			returner.setNoteData(returner.getNoteData() + d);
-		if (currMain.VERBOSE)
-			System.out.println("returner: " + returner);
+		log.fine("returner: " + returner);
 		return returner;
 	}
 

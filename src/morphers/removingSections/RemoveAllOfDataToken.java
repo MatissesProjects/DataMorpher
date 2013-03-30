@@ -1,8 +1,8 @@
 package morphers.removingSections;
 
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-import structure.currMain;
 
 /**
  * Remove all of a data token, for example
@@ -45,8 +45,7 @@ public class RemoveAllOfDataToken extends NoteMorpherRule {
 		data.removeAll(dataToRemove);
 		if (data.length() < 4)
 			data.add(new NoteData("abcd"));
-		if (currMain.VERBOSE)
-			System.out.println("dataToRemove: " + dataToRemove);
+		log.fine("dataToRemove: " + dataToRemove);
 	}
 
 }

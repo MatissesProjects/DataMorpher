@@ -1,13 +1,13 @@
 package anticipators;
 
+import static structure.currMain.log;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import morphers.removingSections.TrimTheMode;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-import structure.currMain;
-
-import morphers.removingSections.TrimTheMode;
 
 public class BasicAnticipator extends NoteMorpherRule {
 
@@ -29,9 +29,7 @@ public class BasicAnticipator extends NoteMorpherRule {
 			else
 				countMap.put(ch, 1);
 		}
-		if (currMain.VERBOSE) {
-			System.out.println("countMap: " + countMap);
-		}
+		log.fine("countMap: " + countMap);
 	}
 
 	/**
@@ -46,17 +44,14 @@ public class BasicAnticipator extends NoteMorpherRule {
 				returner = ch;
 			}
 		}
-		if (currMain.VERBOSE) {
-			System.out.println("returner: " + returner);
-		}
+		log.fine("returner: " + returner);
 		return returner;
 	}
 
 	@Override
 	protected void noteMorph(NoteData input) {
 		// char toRemove = getTokenToTrim();
-		TrimTheMode trimmer = new TrimTheMode(
-				new NoteData(data.getRange(start, end)));
+		TrimTheMode trimmer = new TrimTheMode(new NoteData(data.getRange(start, end)));
 		trimmer.morph(null);
 		data.setNoteData(trimmer.data.getNoteData());
 		System.out.println("\t\t " + data);

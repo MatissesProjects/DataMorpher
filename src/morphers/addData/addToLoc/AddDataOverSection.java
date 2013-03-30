@@ -1,8 +1,8 @@
 package morphers.addData.addToLoc;
 
+import static structure.currMain.log;
 import noteStuff.NoteData;
 import noteStuff.NoteMorpherRule;
-import structure.currMain;
 
 /**
  * Something like a paintbrush
@@ -35,20 +35,17 @@ public class AddDataOverSection extends NoteMorpherRule {
 		super(ruleData);
 		start = startIndex;
 		end = endIndex;
-		if (currMain.VERBOSE)
-			System.out.println("start: " + start + " end: " + end);
+		log.config("start: " + start + " end: " + end);
 	}
 
 	@Override
 	protected void noteMorph(NoteData input) {
-		if (currMain.VERBOSE)
-			System.out.println("input: " + input);
-		
-		//FIXME this only works for 1		
+		log.fine("input: " + input);
+
+		// FIXME this only works for 1
 		String sb = appendAtInterval(input, 1);
 		data.setNoteData(sb);
-		if (currMain.VERBOSE)
-			System.out.println(sb);
+		log.fine(sb);
 	}
 
 	private String appendAtInterval(NoteData input, int interval) {
