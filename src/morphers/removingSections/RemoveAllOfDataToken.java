@@ -43,8 +43,9 @@ public class RemoveAllOfDataToken extends MorpherRule {
 	@Override
 	protected void noteMorph(DataNode dataToRemove) {
 		data.removeAll(dataToRemove);
-		if (data.length() < 4)
+		if (data.length() < 4) {
 			data.add(new DataNode("abcd"));
+		}
 		log.fine("dataToRemove: " + dataToRemove);
 	}
 

@@ -1,8 +1,7 @@
 package interfaces;
 
 /**
- * This interface is supposed to make sure we have all morphable objects we are
- * talking to
+ * This interface is supposed to make sure we have all morphable objects we are talking to
  * 
  * @author Matisse
  * 
@@ -11,9 +10,8 @@ package interfaces;
 public interface Morpher<T> {
 
 	/**
-	 * something happens to the data, either inputed here or the data of the
-	 * class, either way, there is a modification or morph that occurs and this
-	 * is how we call it
+	 * something happens to the data, either inputed here or the data of the class, either way,
+	 * there is a modification or morph that occurs and this is how we call it
 	 * 
 	 * @param input
 	 *            - this is our input of type DATA_TYPE

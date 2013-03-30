@@ -2,9 +2,9 @@ package morphers.transpose;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
-import abstracts.MorpherRule;
 import structure.DataNode;
 import structure.MathHelper;
+import abstracts.MorpherRule;
 
 /**
  * Takes data and shifts a subset of it by the magnitude
@@ -57,7 +57,7 @@ public class ShiftDataToTheMag extends MorpherRule {
 		DataNode initialData = new DataNode();
 		int range = 'z' - 'a' + 1;
 		for (int i = start; i < end; ++i) {
-			char newchar = (char) ((((data.get(i) + newMagnitude) - 'a' + range) % range) + 'a');
+			char newchar = (char) ((data.get(i) + newMagnitude - 'a' + range) % range + 'a');
 			initialData.add(new DataNode(newchar + ""));
 		}
 		data.insertData(start, end, initialData);

@@ -1,8 +1,8 @@
 package morphers.removingSections;
 
-import abstracts.MorpherRule;
 import structure.DataNode;
 import structure.MathHelper;
+import abstracts.MorpherRule;
 
 /**
  * Takes the rule data and deletes a segment from start to end.
@@ -12,7 +12,7 @@ import structure.MathHelper;
  */
 public class DeleteSegment extends MorpherRule {
 
-	private int start, end;
+	private final int start, end;
 
 	/**
 	 * Known location set, selected location or zone maybe?
@@ -40,8 +40,8 @@ public class DeleteSegment extends MorpherRule {
 	 */
 	public DeleteSegment(DataNode ruleData) {
 		super(ruleData);
-		this.start = MathHelper.rand.nextInt(1 + data.length() / 4);
-		this.end = start + MathHelper.rand.nextInt(1 + data.length() / 4);
+		start = MathHelper.rand.nextInt(1 + data.length() / 4);
+		end = start + MathHelper.rand.nextInt(1 + data.length() / 4);
 	}
 
 	/**
@@ -50,7 +50,8 @@ public class DeleteSegment extends MorpherRule {
 	@Override
 	protected void noteMorph(DataNode NOT_USED) {
 		data.setNoteData(data.getRange(0, start) + data.getRange(end, data.length()));
-		if (data.length() < 4)
+		if (data.length() < 4) {
 			data.add(new DataNode("abcd"));
+		}
 	}
 }

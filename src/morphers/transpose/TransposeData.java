@@ -1,9 +1,9 @@
 package morphers.transpose;
 
 import static structure.currMain.log;
-import abstracts.MorpherRule;
 import structure.DataNode;
 import structure.MathHelper;
+import abstracts.MorpherRule;
 
 /**
  * This transpose is to take the data from one segment and move it to another segment.
@@ -48,12 +48,12 @@ public class TransposeData extends MorpherRule {
 	 */
 	public TransposeData(DataNode ruleData) {
 		super(ruleData);
-		this.beginIndex = MathHelper.rand.nextInt(1 + data.length() / 4);
-		this.endIndex = beginIndex + MathHelper.rand.nextInt(1 + data.length() / 4);
-		this.transposeTo = MathHelper.rand.nextInt(data.length());
+		beginIndex = MathHelper.rand.nextInt(1 + data.length() / 4);
+		endIndex = beginIndex + MathHelper.rand.nextInt(1 + data.length() / 4);
+		transposeTo = MathHelper.rand.nextInt(data.length());
 
-		this.endIndex = Math.max(beginIndex, endIndex);
-		this.beginIndex = Math.min(beginIndex, endIndex);
+		endIndex = Math.max(beginIndex, endIndex);
+		beginIndex = Math.min(beginIndex, endIndex);
 
 	}
 
@@ -72,7 +72,7 @@ public class TransposeData extends MorpherRule {
 			endData.setNoteData(data.getRange(endIndex, transposeTo));
 		}
 		data.setNoteData("" + startData + endData + transposedData + lastData);
-		
+
 		log.finest("beginIndex: " + beginIndex + " endIndex: " + endIndex + " transposeTo: "
 				+ transposeTo + "\ntransposedData: " + transposedData + " startData: " + startData
 				+ " endData: " + endData + " lastData: " + lastData);

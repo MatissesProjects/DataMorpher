@@ -1,8 +1,8 @@
 package morphers.addData.addToLoc;
 
+import morphers.abstracts.A_AddToLocationMorpher;
 import structure.DataNode;
 import structure.MathHelper;
-import morphers.abstracts.A_AddToLocationMorpher;
 
 /**
  * This is an example of a note morphing rule.

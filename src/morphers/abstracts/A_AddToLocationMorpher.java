@@ -5,7 +5,7 @@ import abstracts.MorpherRule;
 
 public abstract class A_AddToLocationMorpher extends MorpherRule {
 
-	private int morphLocation;
+	private final int morphLocation;
 
 	/**
 	 * write to location within the data
@@ -19,8 +19,8 @@ public abstract class A_AddToLocationMorpher extends MorpherRule {
 	}
 
 	/**
-	 * This noteMorph does an addition of the string addToString into a given
-	 * location in the string given to the noteMorph
+	 * This noteMorph does an addition of the string addToString into a given location in the string
+	 * given to the noteMorph
 	 * 
 	 */
 	@Override

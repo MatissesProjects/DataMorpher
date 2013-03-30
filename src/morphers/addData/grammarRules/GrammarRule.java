@@ -1,7 +1,7 @@
 package morphers.addData.grammarRules;
 
 public class GrammarRule {
-	private String toReplace, replacementStr;
+	private final String toReplace, replacementStr;
 
 	public GrammarRule(String toReplace, String replacementStr) {
 		this.toReplace = toReplace;

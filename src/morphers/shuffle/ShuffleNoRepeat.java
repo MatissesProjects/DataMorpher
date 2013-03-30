@@ -3,9 +3,8 @@ package morphers.shuffle;
 import java.util.Collections;
 import java.util.List;
 
-import structure.DataNode;
-
 import morphers.abstracts.A_ShuffleMorpher;
+import structure.DataNode;
 
 /**
  * This takes the current data, from start to end, shuffles it

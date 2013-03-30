@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import structure.DataNode;
-
 import abstracts.MorpherRule;
 
 /**
@@ -41,10 +40,11 @@ public class TrimTheMode extends MorpherRule {
 	public void populateCountMap() {
 		countMap = new HashMap<Character, Integer>();
 		for (Character ch : data.getNoteData().toCharArray()) {
-			if (countMap.containsKey(ch))
-				countMap.put(ch, (countMap.get(ch) + 1));
-			else
+			if (countMap.containsKey(ch)) {
+				countMap.put(ch, countMap.get(ch) + 1);
+			} else {
 				countMap.put(ch, 1);
+			}
 		}
 		log.fine("countMap: " + countMap);
 	}
@@ -70,8 +70,9 @@ public class TrimTheMode extends MorpherRule {
 		char toTrim = getTokenToTrim();
 		log.fine("trimming: " + toTrim);
 		// toTrim+ = the regex 1 or more
-		data.replaceAll((toTrim + "+"), toTrim + "");
-		if (data.length() < 4)
+		data.replaceAll(toTrim + "+", toTrim + "");
+		if (data.length() < 4) {
 			data.add(new DataNode(STRING_REPLACED_TO_SHORT));
+		}
 	}
 }

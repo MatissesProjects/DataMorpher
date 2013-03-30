@@ -5,11 +5,9 @@ import static structure.currMain.log;
 import java.util.HashMap;
 import java.util.Map;
 
-import structure.DataNode;
-
-import abstracts.MorpherRule;
-
 import morphers.removingSections.TrimTheMode;
+import structure.DataNode;
+import abstracts.MorpherRule;
 
 public class BasicAnticipator extends MorpherRule {
 
@@ -26,10 +24,11 @@ public class BasicAnticipator extends MorpherRule {
 		countMap = new HashMap<Character, Integer>();
 		for (int i = 0; i < end - start + 1; ++i) {
 			char ch = data.get(i);
-			if (countMap.containsKey(ch))
-				countMap.put(ch, (countMap.get(ch) + 1));
-			else
+			if (countMap.containsKey(ch)) {
+				countMap.put(ch, countMap.get(ch) + 1);
+			} else {
 				countMap.put(ch, 1);
+			}
 		}
 		log.fine("countMap: " + countMap);
 	}

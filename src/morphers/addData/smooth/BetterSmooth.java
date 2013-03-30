@@ -15,9 +15,10 @@ public class BetterSmooth extends MorpherRule {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < data.length() - 4; ++i) {
 			sb.append(data.get(i));
-			if (data.get(i) != data.get(i + 1) && data.get(i + 2) != data.get(i + 3))
+			if (data.get(i) != data.get(i + 1) && data.get(i + 2) != data.get(i + 3)) {
 				sb.append((char) ((data.get(i) + data.get(i + 1) + data.get(i + 2) + data
 						.get(i + 3)) / 4));
+			}
 		}
 		BasicSmooth lastPieces = new BasicSmooth(new DataNode(data.getRange(data.length() - 4,
 				data.length())));

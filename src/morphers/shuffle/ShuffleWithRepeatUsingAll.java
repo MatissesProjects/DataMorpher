@@ -3,11 +3,9 @@ package morphers.shuffle;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import morphers.abstracts.A_ShuffleMorpher;
 import structure.DataNode;
 import structure.MathHelper;
-
-import morphers.abstracts.A_ShuffleMorpher;
 
 public class ShuffleWithRepeatUsingAll extends A_ShuffleMorpher {
 
@@ -17,7 +15,7 @@ public class ShuffleWithRepeatUsingAll extends A_ShuffleMorpher {
 
 	@Override
 	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
-		List<DataNode> removeFromBag = new ArrayList<>(bag);//list of arbitrary type
+		List<DataNode> removeFromBag = new ArrayList<>(bag);// list of arbitrary type
 		DataNode resultingData = new DataNode();
 		while (!removeFromBag.isEmpty()) {
 			int randomGrab = MathHelper.rand.nextInt(bag.size());

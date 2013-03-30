@@ -5,9 +5,8 @@ import static structure.currMain.log;
 import java.util.Collections;
 import java.util.List;
 
-import structure.DataNode;
-
 import morphers.abstracts.A_ShuffleMorpher;
+import structure.DataNode;
 
 public class Sort extends A_ShuffleMorpher {
 
@@ -20,8 +19,9 @@ public class Sort extends A_ShuffleMorpher {
 	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
 		Collections.sort(bag);
 		DataNode returner = new DataNode();
-		for (DataNode d : bag)
+		for (DataNode d : bag) {
 			returner.setNoteData(returner.getNoteData() + d);
+		}
 		log.fine("returner: " + returner);
 		return returner;
 	}

@@ -11,7 +11,7 @@ public class currMain {
 	 */
 	public static void main(String[] args) {
 		log = Logger.getGlobal();
-		log.setLevel(Level.ALL);
+		log.setLevel(Level.FINE);
 
 		DataMorpher morphObject = new DataMorpher("abcdefghi");
 		morphObject.doRandomMorphs();
@@ -19,8 +19,9 @@ public class currMain {
 	}
 
 	public static void checkForErrors(DataMorpher morpher, int numberOfRuns) {
-		for (int i = 0; i < numberOfRuns; ++i)
+		for (int i = 0; i < numberOfRuns; ++i) {
 			morpher.doRandomMorphs();
+		}
 		System.out.println("No Errors!");
 	}
 }

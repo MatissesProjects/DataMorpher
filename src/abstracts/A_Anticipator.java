@@ -1,5 +1,7 @@
 package abstracts;
 
+import static structure.currMain.log;
+
 public abstract class A_Anticipator {
 
 	int start, end;
@@ -7,6 +9,8 @@ public abstract class A_Anticipator {
 	public A_Anticipator(int startIndex, int endIndex) {
 		start = startIndex;
 		end = endIndex;
+		log.severe("Start: " + start + " End: " + end);
+
 	}
 
 	public abstract void doAnticipation();

@@ -2,7 +2,6 @@ package structure;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
-
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
 import morphers.addData.addToLoc.AddToRandLoc;
@@ -26,7 +25,7 @@ import anticipators.Gradient;
 public class DataMorpher {
 
 	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
-	private final int[] runs = { 10, 11, 10 };
+	private final int[] runs = { 10, 8, 10 };
 
 	DataNode initData;
 
@@ -35,9 +34,9 @@ public class DataMorpher {
 	}
 
 	private MorpherRule getMorph(int nextInt, DataNode noteData) {
-		int first = rand.nextInt((noteData.length() / 4) + 1);
-		int second = 1 + first + rand.nextInt((noteData.length() / 2) + 1);
-		log.info("Number for morph occurance: " + nextInt);
+		int first = rand.nextInt(noteData.length() / 4 + 1);
+		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
+		log.finest("Number for morph occurance: " + nextInt);
 		switch (nextInt) {
 		case 0:
 			return new AddToStart(noteData);
@@ -82,6 +81,11 @@ public class DataMorpher {
 		}
 	}
 
+	/**
+	 * This calls upon any one of the morphs that exist within the system so far.
+	 * 
+	 * @return
+	 */
 	public MorpherRule doRandomMorphs() {
 		// System.out.println("\n\n\n\nInitial Data: " + initData);
 		log.info("Initial Data: " + initData);
@@ -97,16 +101,18 @@ public class DataMorpher {
 
 	public MorpherRule doSetMorphs() {
 		log.info("Initial Data: " + initData);
-		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(3)), 0);
-		for (int i : runs)
+		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(MAX_MORPH_DATA)), 0);
+		for (int i : runs) {
 			morphingRule = doMorph(morphingRule.data,
 					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), i);
+		}
 		return morphingRule;
 	}
 
 	private String getRandSet(int amount) {
-		if (amount <= 1)
+		if (amount <= 1) {
 			return initData.get(rand.nextInt(initData.length())) + "";
+		}
 		return initData.get(rand.nextInt(initData.length())) + getRandSet(amount - 1);
 	}
 

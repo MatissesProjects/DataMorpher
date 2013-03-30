@@ -28,8 +28,8 @@ public class GrammarReplace extends MorpherRule {
 		super(ruleData);
 		char toReplace = replacementStr.charAt(MathHelper.rand.nextInt(replacementStr.length()));
 		rule = new GrammarRule(toReplace + "", replacementStr);
-		System.out.println("toReplace: " + toReplace);
-		System.out.println("replacementStr: " + replacementStr);
+		// System.out.println("toReplace: " + toReplace);
+		// System.out.println("replacementStr: " + replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
 	}
@@ -46,15 +46,15 @@ public class GrammarReplace extends MorpherRule {
 	public GrammarReplace(DataNode ruleData, String toReplace, String replacementStr) {
 		super(ruleData);
 		rule = new GrammarRule(toReplace, replacementStr);
-		System.out.println("toReplace: " + toReplace);
-		System.out.println("replacementStr: " + replacementStr);
+		// System.out.println("toReplace: " + toReplace);
+		// System.out.println("replacementStr: " + replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
 	}
 
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
-		// System.out.println(rule.getToReplace() + " :: " + rule.getReplacementStr());
+		log.finer(rule.getToReplace() + " :: " + rule.getReplacementStr());
 		data.replaceAll(rule);
 	}
 }

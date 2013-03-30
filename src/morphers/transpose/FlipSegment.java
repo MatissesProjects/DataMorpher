@@ -1,8 +1,8 @@
 package morphers.transpose;
 
-import abstracts.MorpherRule;
 import structure.DataNode;
 import structure.MathHelper;
+import abstracts.MorpherRule;
 
 /**
  * Takes a segment of data and flips it around
@@ -13,7 +13,7 @@ import structure.MathHelper;
  * 
  */
 public class FlipSegment extends MorpherRule {
-	private int start, end;
+	private final int start, end;
 
 	/**
 	 * Takes data from a known {start, end}index and flips it
@@ -34,8 +34,8 @@ public class FlipSegment extends MorpherRule {
 	}
 
 	/**
-	 * Flips the data given within ruleData, however this is a random flip,
-	 * start and end locations are randomly generated
+	 * Flips the data given within ruleData, however this is a random flip, start and end locations
+	 * are randomly generated
 	 * 
 	 * @Note it can select the same index and not do a flip
 	 * 
@@ -48,8 +48,8 @@ public class FlipSegment extends MorpherRule {
 	}
 
 	/**
-	 * Morph for flipSegment, this morph is simple using StringBuilder and a
-	 * simple data substring we get our data to flip.
+	 * Morph for flipSegment, this morph is simple using StringBuilder and a simple data substring
+	 * we get our data to flip.
 	 */
 	@Override
 	protected void noteMorph(DataNode NOT_USED) {

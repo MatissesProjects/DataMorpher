@@ -17,8 +17,8 @@ public abstract class MorpherRule extends Rule<DataNode> {
 	}
 
 	/**
-	 * This is the generic base morph method, we have redefined it here to call
-	 * our base noteMorph, which is defined by which
+	 * This is the generic base morph method, we have redefined it here to call our base noteMorph,
+	 * which is defined by which
 	 */
 	@Override
 	public void morph(DataNode input) {
