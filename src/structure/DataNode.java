@@ -1,5 +1,7 @@
 package structure;
 
+import morphers.addData.grammarRules.GrammarRule;
+
 /**
  * Current 'Data' point for the note Rule morphers
  * 
@@ -76,6 +78,10 @@ public class DataNode implements Comparable<DataNode> {
 		replaceAll(dataToRemove.getNoteData(), "");
 	}
 	
+	public void replaceAll(GrammarRule rule) {
+		setNoteData(data.replaceAll(rule.getToReplace(), rule.getReplacementStr()));
+	}
+	
 	public void replaceAll(String dataToRemove, String replacement) {
 		setNoteData(data.replaceAll(dataToRemove, replacement));
 	} 
@@ -105,4 +111,5 @@ public class DataNode implements Comparable<DataNode> {
 	public String getRange(int start, int end) {
 		return data.substring(start, Math.min(end, data.length()));
 	}
+
 }

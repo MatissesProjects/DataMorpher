@@ -1,6 +1,5 @@
 package morphers.removingSections;
 
-
 import static structure.currMain.log;
 
 import java.util.HashMap;
@@ -9,7 +8,6 @@ import java.util.Map;
 import structure.DataNode;
 
 import abstracts.MorpherRule;
-
 
 /**
  * Takes the number of separate tokens and sums them, finding the greatest one (not caring about who
@@ -22,6 +20,7 @@ import abstracts.MorpherRule;
  */
 public class TrimTheMode extends MorpherRule {
 
+	private static final String STRING_REPLACED_TO_SHORT = "abcd";
 	Map<Character, Integer> countMap;
 
 	/**
@@ -73,6 +72,6 @@ public class TrimTheMode extends MorpherRule {
 		// toTrim+ = the regex 1 or more
 		data.replaceAll((toTrim + "+"), toTrim + "");
 		if (data.length() < 4)
-			data.add(new DataNode("abcd"));
+			data.add(new DataNode(STRING_REPLACED_TO_SHORT));
 	}
 }

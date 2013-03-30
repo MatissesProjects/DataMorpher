@@ -55,6 +55,6 @@ public class GrammarReplace extends MorpherRule {
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
 		// System.out.println(rule.getToReplace() + " :: " + rule.getReplacementStr());
-		data.replaceAll(rule.getToReplace(), rule.getReplacementStr());
+		data.replaceAll(rule);
 	}
 }
