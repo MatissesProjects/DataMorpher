@@ -1,7 +1,7 @@
 package morphers.transpose;
 
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import abstracts.MorpherRule;
+import structure.DataNode;
 import structure.MathHelper;
 
 /**
@@ -12,7 +12,7 @@ import structure.MathHelper;
  * @author Matisse
  * 
  */
-public class FlipSegment extends NoteMorpherRule {
+public class FlipSegment extends MorpherRule {
 	private int start, end;
 
 	/**
@@ -26,7 +26,7 @@ public class FlipSegment extends NoteMorpherRule {
 	 *            - End index in the data
 	 * @Note if start > end, this will automatically flip it
 	 */
-	public FlipSegment(NoteData ruleData, int start, int end) {
+	public FlipSegment(DataNode ruleData, int start, int end) {
 		super(ruleData);
 
 		this.start = Math.min(start, end);
@@ -41,7 +41,7 @@ public class FlipSegment extends NoteMorpherRule {
 	 * 
 	 * @param ruleData
 	 */
-	public FlipSegment(NoteData ruleData) {
+	public FlipSegment(DataNode ruleData) {
 		super(ruleData);
 		start = MathHelper.rand.nextInt(1 + data.length() / 4);
 		end = start + MathHelper.rand.nextInt(1 + data.length() / 4);
@@ -52,7 +52,7 @@ public class FlipSegment extends NoteMorpherRule {
 	 * simple data substring we get our data to flip.
 	 */
 	@Override
-	protected void noteMorph(NoteData NOT_USED) {
+	protected void noteMorph(DataNode NOT_USED) {
 		data.flip(start, end);
 	}
 }

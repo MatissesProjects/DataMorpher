@@ -1,24 +1,24 @@
-package morphers.transpose.shuffle;
+package morphers.shuffle;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import noteStuff.NoteData;
 
+import structure.DataNode;
 import structure.MathHelper;
 
 import morphers.abstracts.A_ShuffleMorpher;
 
 public class ShuffleWithRepeatUsingAll extends A_ShuffleMorpher {
 
-	public ShuffleWithRepeatUsingAll(NoteData ruleData, int start, int end) {
+	public ShuffleWithRepeatUsingAll(DataNode ruleData, int start, int end) {
 		super(ruleData, start, end);
 	}
 
 	@Override
-	protected NoteData thisShuffle(List<NoteData> bag, int endShuffle) {
-		List<NoteData> removeFromBag = new ArrayList<>(bag);//list of arbitrary type
-		NoteData resultingData = new NoteData();
+	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+		List<DataNode> removeFromBag = new ArrayList<>(bag);//list of arbitrary type
+		DataNode resultingData = new DataNode();
 		while (!removeFromBag.isEmpty()) {
 			int randomGrab = MathHelper.rand.nextInt(bag.size());
 			resultingData.add(bag.get(randomGrab));

@@ -2,8 +2,8 @@ package morphers.transpose;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import abstracts.MorpherRule;
+import structure.DataNode;
 import structure.MathHelper;
 
 /**
@@ -17,7 +17,7 @@ import structure.MathHelper;
  * @author Matisse
  * 
  */
-public class ShiftDataToTheMag extends NoteMorpherRule {
+public class ShiftDataToTheMag extends MorpherRule {
 	int start, end, newMagnitude;
 
 	final int MAX_SHIFT = 2;
@@ -37,14 +37,14 @@ public class ShiftDataToTheMag extends NoteMorpherRule {
 	 * @param newMagnitude
 	 *            - direction to shift the data
 	 */
-	public ShiftDataToTheMag(NoteData ruleData, int start, int end, int newMagnitude) {
+	public ShiftDataToTheMag(DataNode ruleData, int start, int end, int newMagnitude) {
 		super(ruleData);
 		this.start = start;
 		this.end = end;
 		this.newMagnitude = Math.max(newMagnitude, MAX_SHIFT);
 	}
 
-	public ShiftDataToTheMag(NoteData ruleData) {
+	public ShiftDataToTheMag(DataNode ruleData) {
 		super(ruleData);
 		start = rand.nextInt(1 + data.length() / 4);
 		end = start + rand.nextInt(1 + data.length() / 4);
@@ -53,12 +53,12 @@ public class ShiftDataToTheMag extends NoteMorpherRule {
 	}
 
 	@Override
-	protected void noteMorph(NoteData DONT_CARE) {
-		NoteData initialData = new NoteData();
+	protected void noteMorph(DataNode DONT_CARE) {
+		DataNode initialData = new DataNode();
 		int range = 'z' - 'a' + 1;
 		for (int i = start; i < end; ++i) {
 			char newchar = (char) ((((data.get(i) + newMagnitude) - 'a' + range) % range) + 'a');
-			initialData.add(new NoteData(newchar + ""));
+			initialData.add(new DataNode(newchar + ""));
 		}
 		data.insertData(start, end, initialData);
 	}

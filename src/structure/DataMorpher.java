@@ -1,7 +1,8 @@
 package structure;
 
-import static structure.currMain.log;
 import static structure.MathHelper.rand;
+import static structure.currMain.log;
+
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
 import morphers.addData.addToLoc.AddToRandLoc;
@@ -13,29 +14,27 @@ import morphers.addData.smooth.Sort;
 import morphers.removingSections.DeleteSegment;
 import morphers.removingSections.RemoveAllOfDataToken;
 import morphers.removingSections.TrimTheMode;
+import morphers.shuffle.ShuffleNoRepeat;
+import morphers.shuffle.ShuffleWithRepeat;
+import morphers.shuffle.ShuffleWithRepeatUsingAll;
 import morphers.transpose.FlipSegment;
 import morphers.transpose.ShiftDataToTheMag;
 import morphers.transpose.TransposeData;
-import morphers.transpose.shuffle.ShuffleNoRepeat;
-import morphers.transpose.shuffle.ShuffleWithRepeat;
-import morphers.transpose.shuffle.ShuffleWithRepeatUsingAll;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
-import noteStuff.NoteRule;
+import abstracts.MorpherRule;
 import anticipators.Gradient;
 
-public class GetMorpher {
+public class DataMorpher {
 
-	private final static int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
+	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
+	private final int[] runs = { 10, 11, 10 };
 
-	private final static int[] runs = { 1, 3, 3, 3, 3, 3, 3, 3, 1 };
-	String initData = "abcdefghi";
+	DataNode initData;
 
-	public GetMorpher(String initData) {
-		this.initData = initData;
+	public DataMorpher(String initData) {
+		this.initData = new DataNode(initData);
 	}
 
-	private NoteMorpherRule getMorph(int nextInt, NoteData noteData) {
+	private MorpherRule getMorph(int nextInt, DataNode noteData) {
 		int first = rand.nextInt((noteData.length() / 4) + 1);
 		int second = 1 + first + rand.nextInt((noteData.length() / 2) + 1);
 		log.info("Number for morph occurance: " + nextInt);
@@ -63,8 +62,8 @@ public class GetMorpher {
 		case 10:
 			return new TrimTheMode(noteData);
 		case 11:
-			return new GrammarReplace(noteData, getRandSet(noteData.getNoteData(), 1), getRandSet(
-					noteData.getNoteData(), rand.nextInt(3)));
+			return new GrammarReplace(noteData, getRandSet(1),
+					getRandSet(1 + rand.nextInt(MAX_MORPH_DATA)));
 		case 12:
 			return new RemoveAllOfDataToken(noteData);
 		case 13:
@@ -83,46 +82,45 @@ public class GetMorpher {
 		}
 	}
 
-	public NoteRule doRandomMorphs() {
+	public MorpherRule doRandomMorphs() {
+		// System.out.println("\n\n\n\nInitial Data: " + initData);
 		log.info("Initial Data: " + initData);
-		NoteData initialNoteData = new NoteData(initData);
-		NoteRule morphingRule = doRandomMorph(initialNoteData,
-				new NoteData(getRandSet(initData, 3)));
-		for (int i = 0; i < TOTAL_MORPHERS; ++i)
+		MorpherRule morphingRule = doRandomMorph(initData,
+				new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
+		for (int i = 0; i < TOTAL_MORPHERS; ++i) {
 			morphingRule = doRandomMorph(morphingRule.data,
-					new NoteData(getRandSet(initData, rand.nextInt(MAX_MORPH_DATA))));
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
+			initData = morphingRule.data;
+		}
 		return morphingRule;
 	}
 
-	public NoteRule doSetMorphs() {
+	public MorpherRule doSetMorphs() {
 		log.info("Initial Data: " + initData);
-		NoteData initialNoteData = new NoteData(initData);
-		NoteRule morphingRule = doMorph(initialNoteData, new NoteData(getRandSet(initData, 3)), 0);
+		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(3)), 0);
 		for (int i : runs)
 			morphingRule = doMorph(morphingRule.data,
-					new NoteData(getRandSet(initData, rand.nextInt(3))), i);
-		morphingRule = morphData(new TrimTheMode(morphingRule.data),
-				new NoteData(getRandSet(initData, 3)));
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), i);
 		return morphingRule;
 	}
 
-	private String getRandSet(String seedData, int amount) {
+	private String getRandSet(int amount) {
 		if (amount <= 1)
-			return seedData.charAt(rand.nextInt(seedData.length())) + "";
-		return seedData.charAt(rand.nextInt(seedData.length())) + getRandSet(seedData, amount - 1);
+			return initData.get(rand.nextInt(initData.length())) + "";
+		return initData.get(rand.nextInt(initData.length())) + getRandSet(amount - 1);
 	}
 
-	private NoteRule morphData(NoteRule morpher, NoteData dataForMorph) {
+	private MorpherRule morphData(MorpherRule morpher, DataNode dataForMorph) {
 		morpher.morph(dataForMorph);
 		System.out.println(morpher);
 		return morpher;
 	}
 
-	private NoteRule doMorph(NoteData noteData, NoteData toAdd, int i) {
+	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, int i) {
 		return morphData(getMorph(i, noteData), toAdd);
 	}
 
-	private NoteRule doRandomMorph(NoteData noteData, NoteData toAdd) {
+	private MorpherRule doRandomMorph(DataNode noteData, DataNode toAdd) {
 		return morphData(getMorph(rand.nextInt(TOTAL_MORPHERS), noteData), toAdd);
 	}
 }

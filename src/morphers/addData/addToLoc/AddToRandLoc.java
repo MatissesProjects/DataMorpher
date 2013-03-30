@@ -1,6 +1,6 @@
 package morphers.addData.addToLoc;
 
-import noteStuff.NoteData;
+import structure.DataNode;
 import structure.MathHelper;
 import morphers.abstracts.A_AddToLocationMorpher;
 
@@ -19,7 +19,7 @@ public class AddToRandLoc extends A_AddToLocationMorpher {
 	 * string given to the noteMorph
 	 * 
 	 */
-	public AddToRandLoc(NoteData ruleData) {
+	public AddToRandLoc(DataNode ruleData) {
 		super(ruleData, MathHelper.rand.nextInt(ruleData.length()));
 	}
 }

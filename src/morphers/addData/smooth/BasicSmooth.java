@@ -1,17 +1,17 @@
 package morphers.addData.smooth;
 
 import static structure.currMain.log;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
+import abstracts.MorpherRule;
 
-public class BasicSmooth extends NoteMorpherRule {
+public class BasicSmooth extends MorpherRule {
 
-	public BasicSmooth(NoteData ruleData) {
+	public BasicSmooth(DataNode ruleData) {
 		super(ruleData);
 	}
 
 	@Override
-	protected void noteMorph(NoteData DONT_CARE) {
+	protected void noteMorph(DataNode DONT_CARE) {
 		StringBuilder sb = new StringBuilder();
 		//compares 2 at a time, so -1 to not compare against nothing at end
 		for (int i = 0; i < data.length() - 1; ++i) {

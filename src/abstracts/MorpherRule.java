@@ -1,14 +1,18 @@
-package noteStuff;
+package abstracts;
+
+import structure.DataNode;
 
 /**
  * This contains the rules for the note morph concepts
  * 
+ * there will be data in the morph call
+ * 
  * @author Matisse
  * 
  */
-public abstract class NoteMorpherRule extends NoteRule {
+public abstract class MorpherRule extends Rule<DataNode> {
 
-	public NoteMorpherRule(NoteData ruleData) {
+	public MorpherRule(DataNode ruleData) {
 		super(ruleData);
 	}
 
@@ -17,7 +21,7 @@ public abstract class NoteMorpherRule extends NoteRule {
 	 * our base noteMorph, which is defined by which
 	 */
 	@Override
-	public void morph(NoteData input) {
+	public void morph(DataNode input) {
 		super.morph(input);
 		noteMorph(input);
 	}
@@ -27,5 +31,5 @@ public abstract class NoteMorpherRule extends NoteRule {
 	 * 
 	 * @param inputStr
 	 */
-	protected abstract void noteMorph(NoteData input);
+	protected abstract void noteMorph(DataNode input);
 }

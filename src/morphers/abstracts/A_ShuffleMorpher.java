@@ -5,8 +5,10 @@ import static structure.currMain.log;
 import java.util.ArrayList;
 import java.util.List;
 
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
+
+import abstracts.MorpherRule;
+
 
 /**
  * Abstract concept of a shuffle morph<br>
@@ -15,7 +17,7 @@ import noteStuff.NoteMorpherRule;
  * @author Matisse
  * 
  */
-public abstract class A_ShuffleMorpher extends NoteMorpherRule {
+public abstract class A_ShuffleMorpher extends MorpherRule {
 
 	protected int start, end;
 
@@ -25,7 +27,7 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	 * @param start
 	 * @param end
 	 */
-	public A_ShuffleMorpher(NoteData ruleData, int start, int end) {
+	public A_ShuffleMorpher(DataNode ruleData, int start, int end) {
 		super(ruleData);
 		log.severe("Start: " + start + " end: " + end);		
 		this.start = Math.min(start, end);
@@ -37,10 +39,10 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	 *            - not important for this morph
 	 */
 	@Override
-	protected void noteMorph(NoteData DONT_CARE) {
+	protected void noteMorph(DataNode DONT_CARE) {
 		// Create bag to hold pieces of data we what "shuffled"
-		List<NoteData> bag = new ArrayList<>(end - start + 1);
-		NoteData resultingData = new NoteData();
+		List<DataNode> bag = new ArrayList<>(end - start + 1);
+		DataNode resultingData = new DataNode();
 
 		// get the letters to shuffle
 		bag.addAll(getDataToShuffle());
@@ -62,10 +64,10 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	 * 
 	 * @return
 	 */
-	protected List<NoteData> getDataToShuffle() {
-		List<NoteData> returner = new ArrayList<>(end - start + 1);
+	protected List<DataNode> getDataToShuffle() {
+		List<DataNode> returner = new ArrayList<>(end - start + 1);
 		for (int i = start; i < Math.min(data.length(), end); ++i) {
-			returner.add(new NoteData(data.get(i)));
+			returner.add(new DataNode(data.get(i)));
 		}
 		return returner;
 	}
@@ -77,13 +79,13 @@ public abstract class A_ShuffleMorpher extends NoteMorpherRule {
 	 * @param ending
 	 * @return the data to be set
 	 */
-	protected NoteData setData(int beginning, int ending) {
-		NoteData returner = new NoteData();
+	protected DataNode setData(int beginning, int ending) {
+		DataNode returner = new DataNode();
 		for (int i = beginning; i < ending; ++i) {
-			returner.add(new NoteData(data.get(i)));
+			returner.add(new DataNode(data.get(i)));
 		}
 		return returner;
 	}
 
-	protected abstract NoteData thisShuffle(List<NoteData> bag, int endShuffle);
+	protected abstract DataNode thisShuffle(List<DataNode> bag, int endShuffle);
 }

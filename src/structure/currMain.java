@@ -11,19 +11,16 @@ public class currMain {
 	 */
 	public static void main(String[] args) {
 		log = Logger.getGlobal();
-		log.setLevel(Level.OFF);
+		log.setLevel(Level.ALL);
 
-		GetMorpher morphObject = new GetMorpher("abcdefghi");
-
+		DataMorpher morphObject = new DataMorpher("abcdefghi");
 		morphObject.doRandomMorphs();
-//		morphObject.doSetMorphs();
-
-//		 for (int i = 0; i < 1000; ++i) {
-//			 morphObject.doRandomMorphs();
-//		 }
-//		 System.out.println("No Errors!");
-
-		log.info("\n---------------------------------------\n");
+		morphObject.doSetMorphs();
 	}
 
+	public static void checkForErrors(DataMorpher morpher, int numberOfRuns) {
+		for (int i = 0; i < numberOfRuns; ++i)
+			morpher.doRandomMorphs();
+		System.out.println("No Errors!");
+	}
 }

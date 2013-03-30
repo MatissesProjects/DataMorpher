@@ -1,8 +1,8 @@
 package morphers.removingSections;
 
 import static structure.currMain.log;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
+import abstracts.MorpherRule;
 
 /**
  * Remove all of a data token, for example
@@ -20,7 +20,7 @@ import noteStuff.NoteMorpherRule;
  * @author Matisse
  * 
  */
-public class RemoveAllOfDataToken extends NoteMorpherRule {
+public class RemoveAllOfDataToken extends MorpherRule {
 
 	/**
 	 * Useful for removing an artifact or something that doesnt seem to fit nicely, that is easy to
@@ -32,7 +32,7 @@ public class RemoveAllOfDataToken extends NoteMorpherRule {
 	 * @param ruleData
 	 *            - Data for this morph
 	 */
-	public RemoveAllOfDataToken(NoteData ruleData) {
+	public RemoveAllOfDataToken(DataNode ruleData) {
 		super(ruleData);
 	}
 
@@ -41,10 +41,10 @@ public class RemoveAllOfDataToken extends NoteMorpherRule {
 	 * replaceAll
 	 */
 	@Override
-	protected void noteMorph(NoteData dataToRemove) {
+	protected void noteMorph(DataNode dataToRemove) {
 		data.removeAll(dataToRemove);
 		if (data.length() < 4)
-			data.add(new NoteData("abcd"));
+			data.add(new DataNode("abcd"));
 		log.fine("dataToRemove: " + dataToRemove);
 	}
 

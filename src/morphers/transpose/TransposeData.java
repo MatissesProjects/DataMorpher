@@ -1,8 +1,8 @@
 package morphers.transpose;
 
 import static structure.currMain.log;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import abstracts.MorpherRule;
+import structure.DataNode;
 import structure.MathHelper;
 
 /**
@@ -15,7 +15,7 @@ import structure.MathHelper;
  * @author Matisse
  * 
  */
-public class TransposeData extends NoteMorpherRule {
+public class TransposeData extends MorpherRule {
 
 	int beginIndex, endIndex, transposeTo;
 
@@ -33,7 +33,7 @@ public class TransposeData extends NoteMorpherRule {
 	 *            - Location within the current data to transpose the data selected by {begin,
 	 *            end}index
 	 */
-	public TransposeData(NoteData ruleData, int beginIndex, int endIndex, int transposeTo) {
+	public TransposeData(DataNode ruleData, int beginIndex, int endIndex, int transposeTo) {
 		super(ruleData);
 		this.endIndex = Math.max(beginIndex, endIndex);
 		this.beginIndex = Math.min(beginIndex, endIndex);
@@ -46,7 +46,7 @@ public class TransposeData extends NoteMorpherRule {
 	 * 
 	 * @param ruleData
 	 */
-	public TransposeData(NoteData ruleData) {
+	public TransposeData(DataNode ruleData) {
 		super(ruleData);
 		this.beginIndex = MathHelper.rand.nextInt(1 + data.length() / 4);
 		this.endIndex = beginIndex + MathHelper.rand.nextInt(1 + data.length() / 4);
@@ -61,11 +61,11 @@ public class TransposeData extends NoteMorpherRule {
 	 * This morph is to take data from one location and move it to another.
 	 */
 	@Override
-	protected void noteMorph(NoteData DONT_CARE) {
-		NoteData transposedData = new NoteData(data.getRange(beginIndex, endIndex));
-		NoteData endData = new NoteData();
-		NoteData startData = new NoteData(data.getRange(0, beginIndex));
-		NoteData lastData = new NoteData(data.getRange(Math.max(transposeTo, endIndex),
+	protected void noteMorph(DataNode DONT_CARE) {
+		DataNode transposedData = new DataNode(data.getRange(beginIndex, endIndex));
+		DataNode endData = new DataNode();
+		DataNode startData = new DataNode(data.getRange(0, beginIndex));
+		DataNode lastData = new DataNode(data.getRange(Math.max(transposeTo, endIndex),
 				data.length()));
 
 		if (endIndex < transposeTo) {

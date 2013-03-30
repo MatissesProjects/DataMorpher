@@ -1,10 +1,11 @@
-package morphers.transpose.shuffle;
+package morphers.shuffle;
 
 import java.util.Collections;
 import java.util.List;
 
+import structure.DataNode;
+
 import morphers.abstracts.A_ShuffleMorpher;
-import noteStuff.NoteData;
 
 /**
  * This takes the current data, from start to end, shuffles it
@@ -28,7 +29,7 @@ public class ShuffleNoRepeat extends A_ShuffleMorpher {
 	 * @param end
 	 *            End location for repeat
 	 */
-	public ShuffleNoRepeat(NoteData ruleData, int start, int end) {
+	public ShuffleNoRepeat(DataNode ruleData, int start, int end) {
 		super(ruleData, start, end);
 	}
 
@@ -36,8 +37,8 @@ public class ShuffleNoRepeat extends A_ShuffleMorpher {
 	 * This shuffle takes the data that is required to shuffle and it calls the Collection shuffle
 	 */
 	@Override
-	protected NoteData thisShuffle(List<NoteData> bag, int endShuffle) {
-		NoteData returner = new NoteData();
+	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+		DataNode returner = new DataNode();
 		Collections.shuffle(bag);
 		while (!bag.isEmpty()) {
 			returner.add(bag.remove(0));

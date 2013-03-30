@@ -1,4 +1,4 @@
-package noteStuff;
+package structure;
 
 /**
  * Current 'Data' point for the note Rule morphers
@@ -6,11 +6,11 @@ package noteStuff;
  * @author Matisse
  * 
  */
-public class NoteData implements Comparable<NoteData> {
+public class DataNode implements Comparable<DataNode> {
 	private String data;
 	private int dataLength;
 
-	public NoteData() {
+	public DataNode() {
 		this("");
 	}
 
@@ -20,12 +20,12 @@ public class NoteData implements Comparable<NoteData> {
 	 * 
 	 * @param data
 	 */
-	public NoteData(String data) {
+	public DataNode(String data) {
 		this.data = data;
 		dataLength = data.length();
 	}
 
-	public NoteData(char c) {
+	public DataNode(char c) {
 		this(c+"");
 	}
 
@@ -51,7 +51,7 @@ public class NoteData implements Comparable<NoteData> {
 	 * @param data
 	 * @return this added to data at end
 	 */
-	public void add(NoteData addData) {
+	public void add(DataNode addData) {
 		setNoteData(data + addData.getNoteData());
 	}
 
@@ -64,7 +64,7 @@ public class NoteData implements Comparable<NoteData> {
 	}
 
 	@Override
-	public int compareTo(NoteData other) {
+	public int compareTo(DataNode other) {
 		if (get(0) > other.get(0))
 			return 1;// after 1
 		if (get(0) < other.get(0))
@@ -72,7 +72,7 @@ public class NoteData implements Comparable<NoteData> {
 		return 0;// equal 0
 	}
 
-	public void removeAll(NoteData dataToRemove) {
+	public void removeAll(DataNode dataToRemove) {
 		replaceAll(dataToRemove.getNoteData(), "");
 	}
 	
@@ -81,12 +81,12 @@ public class NoteData implements Comparable<NoteData> {
 	} 
 
 	public void flip(int start, int end) {
-		NoteData pass = new NoteData(new StringBuilder(getRange(start, end)).reverse()
+		DataNode pass = new DataNode(new StringBuilder(getRange(start, end)).reverse()
 				.toString());
 		insertData(start, end, pass);
 	}
 
-	public void insertData(int start, int end, NoteData aData) {
+	public void insertData(int start, int end, DataNode aData) {
 		setNoteData(getRange(0, start) //
 				+ aData.getNoteData() + //
 				getRange(end, length()));

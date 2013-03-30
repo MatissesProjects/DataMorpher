@@ -5,16 +5,18 @@ import static structure.currMain.log;
 import java.util.HashMap;
 import java.util.Map;
 
-import morphers.removingSections.TrimTheMode;
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
 
-public class BasicAnticipator extends NoteMorpherRule {
+import abstracts.MorpherRule;
+
+import morphers.removingSections.TrimTheMode;
+
+public class BasicAnticipator extends MorpherRule {
 
 	int start, end;
 	Map<Character, Integer> countMap;
 
-	public BasicAnticipator(NoteData ruleData, int startIndex, int endIndex) {
+	public BasicAnticipator(DataNode ruleData, int startIndex, int endIndex) {
 		super(ruleData);
 		start = startIndex;
 		end = endIndex;
@@ -49,9 +51,9 @@ public class BasicAnticipator extends NoteMorpherRule {
 	}
 
 	@Override
-	protected void noteMorph(NoteData input) {
+	protected void noteMorph(DataNode input) {
 		// char toRemove = getTokenToTrim();
-		TrimTheMode trimmer = new TrimTheMode(new NoteData(data.getRange(start, end)));
+		TrimTheMode trimmer = new TrimTheMode(new DataNode(data.getRange(start, end)));
 		trimmer.morph(null);
 		data.setNoteData(trimmer.data.getNoteData());
 		System.out.println("\t\t " + data);

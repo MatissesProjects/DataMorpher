@@ -1,11 +1,11 @@
 package morphers.addData.addToLoc;
 
-import noteStuff.NoteData;
+import structure.DataNode;
 import morphers.abstracts.A_AddToLocationMorpher;
 
 public class AddToStart extends A_AddToLocationMorpher {
 
-	public AddToStart(NoteData ruleData) {
+	public AddToStart(DataNode ruleData) {
 		super(ruleData, 0);
 	}
 }

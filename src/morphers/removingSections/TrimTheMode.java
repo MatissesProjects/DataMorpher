@@ -6,8 +6,10 @@ import static structure.currMain.log;
 import java.util.HashMap;
 import java.util.Map;
 
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
+
+import abstracts.MorpherRule;
+
 
 /**
  * Takes the number of separate tokens and sums them, finding the greatest one (not caring about who
@@ -18,7 +20,7 @@ import noteStuff.NoteMorpherRule;
  * @author Matisse
  * 
  */
-public class TrimTheMode extends NoteMorpherRule {
+public class TrimTheMode extends MorpherRule {
 
 	Map<Character, Integer> countMap;
 
@@ -28,7 +30,7 @@ public class TrimTheMode extends NoteMorpherRule {
 	 * @param ruleData
 	 *            - Data for this morph
 	 */
-	public TrimTheMode(NoteData ruleData) {
+	public TrimTheMode(DataNode ruleData) {
 		super(ruleData);
 		populateCountMap();
 	}
@@ -65,12 +67,12 @@ public class TrimTheMode extends NoteMorpherRule {
 	}
 
 	@Override
-	protected void noteMorph(NoteData DONT_CARE) {
+	protected void noteMorph(DataNode DONT_CARE) {
 		char toTrim = getTokenToTrim();
 		log.fine("trimming: " + toTrim);
 		// toTrim+ = the regex 1 or more
 		data.replaceAll((toTrim + "+"), toTrim + "");
 		if (data.length() < 4)
-			data.add(new NoteData("abcd"));
+			data.add(new DataNode("abcd"));
 	}
 }

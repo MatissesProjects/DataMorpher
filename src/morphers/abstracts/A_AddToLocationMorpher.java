@@ -1,9 +1,9 @@
 package morphers.abstracts;
 
-import noteStuff.NoteData;
-import noteStuff.NoteMorpherRule;
+import structure.DataNode;
+import abstracts.MorpherRule;
 
-public abstract class A_AddToLocationMorpher extends NoteMorpherRule {
+public abstract class A_AddToLocationMorpher extends MorpherRule {
 
 	private int morphLocation;
 
@@ -13,7 +13,7 @@ public abstract class A_AddToLocationMorpher extends NoteMorpherRule {
 	 * @param ruleData
 	 * @param morphLocation
 	 */
-	public A_AddToLocationMorpher(NoteData ruleData, int morphLocation) {
+	public A_AddToLocationMorpher(DataNode ruleData, int morphLocation) {
 		super(ruleData);
 		this.morphLocation = morphLocation;
 	}
@@ -24,7 +24,7 @@ public abstract class A_AddToLocationMorpher extends NoteMorpherRule {
 	 * 
 	 */
 	@Override
-	protected void noteMorph(NoteData input) {
+	protected void noteMorph(DataNode input) {
 		data.insertData(morphLocation, morphLocation, input);
 	}
 

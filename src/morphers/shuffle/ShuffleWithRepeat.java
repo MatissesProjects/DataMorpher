@@ -1,9 +1,9 @@
-package morphers.transpose.shuffle;
+package morphers.shuffle;
 
 import java.util.List;
 
-import noteStuff.NoteData;
 
+import structure.DataNode;
 import structure.MathHelper;
 
 import morphers.abstracts.A_ShuffleMorpher;
@@ -21,13 +21,13 @@ import morphers.abstracts.A_ShuffleMorpher;
  */
 public class ShuffleWithRepeat extends A_ShuffleMorpher {
 
-	public ShuffleWithRepeat(NoteData ruleData, int start, int end) {
+	public ShuffleWithRepeat(DataNode ruleData, int start, int end) {
 		super(ruleData, start, end);
 	}
 
 	@Override
-	protected NoteData thisShuffle(List<NoteData> bag, int endShuffle) {
-		NoteData resultingData = new NoteData();
+	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+		DataNode resultingData = new DataNode();
 		for (int i = 0; i <= end; ++i) {
 			int randomGrab = MathHelper.rand.nextInt(bag.size());
 			resultingData.add(bag.get(randomGrab));
