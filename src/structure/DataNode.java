@@ -1,5 +1,8 @@
 package structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import morphers.addData.grammarRules.GrammarRule;
 
 /**
@@ -24,6 +27,11 @@ public class DataNode implements Comparable<DataNode> {
 	public DataNode(String data) {
 		this.data = data;
 		dataLength = data.length();
+	}
+
+	public DataNode(List<DataNode> dataList) {
+		this("");
+		addAll(dataList);
 	}
 
 	public DataNode(char c) {
@@ -117,6 +125,19 @@ public class DataNode implements Comparable<DataNode> {
 	 */
 	public String getRange(int start, int end) {
 		return data.substring(start, Math.min(end, data.length()));
+	}
+
+	public void addAll(List<DataNode> bag) {
+		for (DataNode d : bag)
+			add(d);
+	}
+
+	public List<DataNode> getRangeList(int start, int end) {
+		List<DataNode> ret = new ArrayList<DataNode>(end - start);
+		for (int i = start; i < end; ++i) {
+			ret.add(new DataNode(data.charAt(i)));
+		}
+		return ret;
 	}
 
 }

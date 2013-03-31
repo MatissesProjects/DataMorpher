@@ -16,12 +16,15 @@ public class Sort extends A_ShuffleMorpher {
 	}
 
 	@Override
-	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+	protected DataNode thisShuffle(List<DataNode> bag) {
 		Collections.sort(bag);
-		DataNode returner = new DataNode();
-		for (DataNode d : bag) {
-			returner.setNoteData(returner.getNoteData() + d);
-		}
+//		Collections.reverse(bag);
+		DataNode returner = new DataNode(bag);
+		
+//		returner.addAll(bag);
+//		for (DataNode d : bag) {
+//			returner.setNoteData(returner.getNoteData() + d);
+//		}
 		log.fine("returner: " + returner);
 		return returner;
 	}
