@@ -140,4 +140,9 @@ public class DataNode implements Comparable<DataNode> {
 		return ret;
 	}
 
+	public static DataNode average(DataNode curData, DataNode nextData) {
+		//TODO: fix for non-String
+		return new DataNode((char) ((curData.get(0) + nextData.get(0)) / 2));
+	}
+
 }

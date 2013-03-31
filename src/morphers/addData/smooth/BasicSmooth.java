@@ -15,16 +15,28 @@ public class BasicSmooth extends MorpherRule {
 		StringBuilder sb = new StringBuilder();
 		// compares 2 at a time, so -1 to not compare against nothing at end
 		for (int i = 0; i < data.length() - 1; ++i) {
-			char curChar = data.get(i);
-			char nextChar = data.get(i + 1);
-			sb.append(curChar);
-
-			if (curChar != nextChar) {
-				char cData = (char) ((curChar + nextChar) / 2);
-				if (sb.toString().charAt(sb.length() - 1) != cData) {
-					sb.append(cData);
-				}
+			
+			
+			
+			DataNode curData = new DataNode(data.get(i));
+			DataNode nextData =  new DataNode(data.get(i + 1));
+			
+			DataNode aveData = DataNode.average(curData, nextData);
+			
+			sb.append(curData.getNoteData());
+			
+			if(!aveData.equals(nextData)){
+				sb.append(aveData.getNoteData());
 			}
+			
+			
+
+//			if (curData != nextData) {
+//				char cData = (char) ((curData + nextData) / 2);
+//				if (sb.toString().charAt(sb.length() - 1) != cData) {
+//					sb.append(cData);
+//				}
+//			}
 		}
 		sb.append(data.get(data.length() - 1));
 		log.fine(sb.toString());
