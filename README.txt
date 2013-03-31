@@ -12,6 +12,6 @@ some example runs with 'abcdefghi' as input:
 	fcdafgchfdfdfdfazfghfhfefhcfcfcfgccfcccfefhhfcccecgfhhgfgfegfi
 	egddegedefeddcbcdefgfedefeeddefgfeefgfefeeddefeeddefgfgfgfggfeeddefgfeeddefigf
 
-There really is no clear corrilation between each of the seperate strings, however the within each string there is a very clear pattern. 
+There really is no clear corrilation between each of the seperate strings, however the within each string there is some sort of pattern. 
 
 This is the concept of the morph, you give it an initial data, and it will use that data to create something... morphed :)
