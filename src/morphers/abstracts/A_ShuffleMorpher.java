@@ -27,7 +27,7 @@ public abstract class A_ShuffleMorpher extends MorpherRule {
 	 */
 	public A_ShuffleMorpher(DataNode ruleData, int start, int end) {
 		super(ruleData);
-		log.severe("Start: " + start + " end: " + end);
+		log.finest("Start: " + start + " end: " + end);
 		this.start = Math.min(start, end);
 		this.end = Math.max(start, end);
 	}

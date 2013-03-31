@@ -5,7 +5,14 @@ import abstracts.MorpherRule;
 
 public class Remap extends MorpherRule {
 
-	public Remap(DataNode ruleData) {
+	/**
+	 * 
+	 * @param ruleData
+	 * @param topLimit
+	 *            Currently should only be 1 data long. This is the top bounding limit
+	 * @param bottomLimit Currently should be only 1 data long, this is the bottom bound
+	 */
+	public Remap(DataNode ruleData, DataNode topLimit, DataNode bottomLimit) {
 		super(ruleData);
 	}
 

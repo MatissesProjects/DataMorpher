@@ -2,6 +2,7 @@ package structure;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
+import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
 import morphers.addData.addToLoc.AddToRandLoc;
@@ -24,6 +25,23 @@ import anticipators.Gradient;
 
 public class DataMorpher {
 
+	public enum DataMorpherTypes {
+		AddToStart, AddToEnd, ShiftDataToTheMag, DeleteSegment, ShuffleWithRepeatUsingAll,
+		ShuffleNoRepeat, ShuffleWithRepeat, AddToRandLoc, FlipSegment, TransposeData, TrimTheMode,
+		GrammarReplace, RemoveAllOfDataToken, BasicSmooth, Sort, BetterSmooth, AddDataOverSection,
+		Gradient;
+
+		public static DataMorpherTypes getMorpher(int i) {
+			if (i < 0 || i >= values().length)
+				return TransposeData;
+			return values()[i];
+		}
+
+		public static DataMorpherTypes getRandomMorpher() {
+			return getMorpher(rand.nextInt(values().length));
+		}
+	}
+
 	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
 	private final int[] runs = { 10, 8, 10 };
 
@@ -33,51 +51,51 @@ public class DataMorpher {
 		this.initData = new DataNode(initData);
 	}
 
-	private MorpherRule getMorph(int nextInt, DataNode noteData) {
+	private MorpherRule getMorph(DataMorpherTypes nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
 		log.finest("Number for morph occurance: " + nextInt);
 		switch (nextInt) {
-		case 0:
+		case AddToStart:
 			return new AddToStart(noteData);
-		case 1:
+		case AddToEnd:
 			return new AddToEnd(noteData);
-		case 2:
+		case ShiftDataToTheMag:
 			return new ShiftDataToTheMag(noteData);
-		case 3:
+		case DeleteSegment:
 			return new DeleteSegment(noteData);
-		case 4:
+		case ShuffleWithRepeatUsingAll:
 			return new ShuffleWithRepeatUsingAll(noteData, first, second);
-		case 5:
+		case ShuffleNoRepeat:
 			return new ShuffleNoRepeat(noteData, first, second);
-		case 6:
+		case ShuffleWithRepeat:
 			return new ShuffleWithRepeat(noteData, first, second);
-		case 7:
+		case AddToRandLoc:
 			return new AddToRandLoc(noteData);
-		case 8:
+		case FlipSegment:
 			return new FlipSegment(noteData);
-		case 9:
+		case TransposeData:
 			return new TransposeData(noteData);
-		case 10:
+		case TrimTheMode:
 			return new TrimTheMode(noteData);
-		case 11:
+		case GrammarReplace:
 			return new GrammarReplace(noteData, getRandSet(1),
 					getRandSet(1 + rand.nextInt(MAX_MORPH_DATA)));
-		case 12:
+		case RemoveAllOfDataToken:
 			return new RemoveAllOfDataToken(noteData);
-		case 13:
+		case BasicSmooth:
 			return new BasicSmooth(noteData);
-		case 14:
+		case Sort:
 			return new Sort(noteData, first, second);
-		case 15:
+		case BetterSmooth:
 			return new BetterSmooth(noteData);
-		case 16:
+		case AddDataOverSection:
 			return new AddDataOverSection(noteData, first, second);
-		case 17:
+		case Gradient:
 			return new Gradient(noteData, first, second);
 		default:
-			log.info("no morph occured");
-			return null;
+			log.warning("null morph occured");
+			return new NullMorpher(noteData);
 		}
 	}
 
@@ -101,10 +119,12 @@ public class DataMorpher {
 
 	public MorpherRule doSetMorphs() {
 		log.info("Initial Data: " + initData);
-		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(MAX_MORPH_DATA)), 0);
+		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(MAX_MORPH_DATA)),
+				DataMorpherTypes.getMorpher(TOTAL_MORPHERS));
 		for (int i : runs) {
 			morphingRule = doMorph(morphingRule.data,
-					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), i);
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))),
+					DataMorpherTypes.getMorpher(i));
 		}
 		return morphingRule;
 	}
@@ -118,15 +138,15 @@ public class DataMorpher {
 
 	private MorpherRule morphData(MorpherRule morpher, DataNode dataForMorph) {
 		morpher.morph(dataForMorph);
-		System.out.println(morpher);
+		log.info(morpher.toString());
 		return morpher;
 	}
 
-	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, int i) {
-		return morphData(getMorph(i, noteData), toAdd);
+	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, DataMorpherTypes morphType) {
+		return morphData(getMorph(morphType, noteData), toAdd);
 	}
 
 	private MorpherRule doRandomMorph(DataNode noteData, DataNode toAdd) {
-		return morphData(getMorph(rand.nextInt(TOTAL_MORPHERS), noteData), toAdd);
+		return doMorph(noteData, toAdd, DataMorpherTypes.getRandomMorpher());
 	}
 }
