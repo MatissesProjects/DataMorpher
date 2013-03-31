@@ -1,4 +1,4 @@
-package morphers.abstracts;
+package morphers.shuffle;
 
 import static structure.currMain.log;
 

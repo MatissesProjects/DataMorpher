@@ -1,4 +1,4 @@
-package morphers.abstracts;
+package morphers.addData.addToLoc;
 
 import structure.DataNode;
 import abstracts.MorpherRule;

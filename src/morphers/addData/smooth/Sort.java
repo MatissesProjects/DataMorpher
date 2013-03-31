@@ -5,7 +5,7 @@ import static structure.currMain.log;
 import java.util.Collections;
 import java.util.List;
 
-import morphers.abstracts.A_ShuffleMorpher;
+import morphers.shuffle.A_ShuffleMorpher;
 import structure.DataNode;
 
 public class Sort extends A_ShuffleMorpher {

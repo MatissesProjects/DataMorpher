@@ -1,6 +1,5 @@
 package morphers.addData.addToLoc;
 
-import morphers.abstracts.A_AddToLocationMorpher;
 import structure.DataNode;
 import static structure.MathHelper.rand;
 
