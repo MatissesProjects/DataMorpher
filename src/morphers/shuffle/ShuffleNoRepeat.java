@@ -36,7 +36,7 @@ public class ShuffleNoRepeat extends A_ShuffleMorpher {
 	 * This shuffle takes the data that is required to shuffle and it calls the Collection shuffle
 	 */
 	@Override
-	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+	protected DataNode thisShuffle(List<DataNode> bag) {
 		DataNode returner = new DataNode();
 		Collections.shuffle(bag);
 		while (!bag.isEmpty()) {

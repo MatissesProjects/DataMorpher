@@ -24,9 +24,9 @@ public class ShuffleWithRepeat extends A_ShuffleMorpher {
 	}
 
 	@Override
-	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+	protected DataNode thisShuffle(List<DataNode> bag) {
 		DataNode resultingData = new DataNode();
-		for (int i = 0; i <= end; ++i) {
+		for (int i = 0; i <= bag.size(); ++i) {
 			int randomGrab = MathHelper.rand.nextInt(bag.size());
 			resultingData.add(bag.get(randomGrab));
 		} // shuffle the letters adding them into resultdata

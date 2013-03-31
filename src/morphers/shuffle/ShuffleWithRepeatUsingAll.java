@@ -14,7 +14,7 @@ public class ShuffleWithRepeatUsingAll extends A_ShuffleMorpher {
 	}
 
 	@Override
-	protected DataNode thisShuffle(List<DataNode> bag, int endShuffle) {
+	protected DataNode thisShuffle(List<DataNode> bag) {
 		List<DataNode> removeFromBag = new ArrayList<>(bag);// list of arbitrary type
 		DataNode resultingData = new DataNode();
 		while (!removeFromBag.isEmpty()) {

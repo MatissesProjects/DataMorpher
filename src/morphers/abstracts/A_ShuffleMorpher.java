@@ -39,16 +39,17 @@ public abstract class A_ShuffleMorpher extends MorpherRule {
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
 		// Create bag to hold pieces of data we what "shuffled"
-		List<DataNode> bag = new ArrayList<>(end - start + 1);
+		List<DataNode> bag = new ArrayList<>(getDataToShuffle());
 		DataNode resultingData = new DataNode();
 
 		// get the letters to shuffle
-		bag.addAll(getDataToShuffle());
+//		bag.addAll(getDataToShuffle());
 		// add to our resulting data up to the start of our shuffle
 		resultingData.add(setData(0, start));
 
 		// shuffle the letters adding them into resultData
-		resultingData.add(thisShuffle(bag, bag.size()));
+//		resultingData.add(thisShuffle(bag, bag.size()));
+		resultingData.add(thisShuffle(bag));
 
 		// add to our resulting data the rest of the data
 		resultingData.add(setData(end, data.length()));
@@ -79,11 +80,12 @@ public abstract class A_ShuffleMorpher extends MorpherRule {
 	 */
 	protected DataNode setData(int beginning, int ending) {
 		DataNode returner = new DataNode();
+//		returner.add(new DataNode(data.getRange(beginning, ending)));
 		for (int i = beginning; i < ending; ++i) {
 			returner.add(new DataNode(data.get(i)));
 		}
 		return returner;
 	}
 
-	protected abstract DataNode thisShuffle(List<DataNode> bag, int endShuffle);
+	protected abstract DataNode thisShuffle(List<DataNode> bag);
 }
