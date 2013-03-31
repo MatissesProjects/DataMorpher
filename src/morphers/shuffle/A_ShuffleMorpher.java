@@ -64,11 +64,13 @@ public abstract class A_ShuffleMorpher extends MorpherRule {
 	 * @return
 	 */
 	protected List<DataNode> getDataToShuffle() {
-		List<DataNode> returner = new ArrayList<>(end - start + 1);
-		for (int i = start; i < Math.min(data.length(), end); ++i) {
-			returner.add(new DataNode(data.get(i)));
-		}
-		return returner;
+		int cappedEnd = Math.min(data.length(), end);
+//		List<DataNode> returner = data.getRangeList(start, cappedEnd);
+//				new ArrayList<>(end - start + 1);
+//		for (int i = start; i < Math.min(data.length(), end); ++i) {
+//			returner.add(new DataNode(data.get(i)));
+//		}
+		return data.getRangeList(start, cappedEnd);
 	}
 
 	/**
