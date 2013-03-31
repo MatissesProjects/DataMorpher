@@ -2,7 +2,7 @@ package morphers.addData.addToLoc;
 
 import morphers.abstracts.A_AddToLocationMorpher;
 import structure.DataNode;
-import structure.MathHelper;
+import static structure.MathHelper.rand;
 
 /**
  * This is an example of a note morphing rule.
@@ -20,6 +20,6 @@ public class AddToRandLoc extends A_AddToLocationMorpher {
 	 * 
 	 */
 	public AddToRandLoc(DataNode ruleData) {
-		super(ruleData, MathHelper.rand.nextInt(ruleData.length()));
+		super(ruleData, rand.nextInt(ruleData.length()));
 	}
 }

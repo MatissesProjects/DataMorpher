@@ -1,7 +1,7 @@
 package morphers.removingSections;
 
 import structure.DataNode;
-import structure.MathHelper;
+import static structure.MathHelper.rand;
 import abstracts.MorpherRule;
 
 /**
@@ -40,8 +40,8 @@ public class DeleteSegment extends MorpherRule {
 	 */
 	public DeleteSegment(DataNode ruleData) {
 		super(ruleData);
-		start = MathHelper.rand.nextInt(1 + data.length() / 4);
-		end = start + MathHelper.rand.nextInt(1 + data.length() / 4);
+		start = rand.nextInt(1 + data.length() / 4);
+		end = start + rand.nextInt(1 + data.length() / 4);
 	}
 
 	/**

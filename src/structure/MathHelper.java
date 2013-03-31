@@ -10,8 +10,7 @@ public class MathHelper {
 	}
 
 	public static int constrain(int num, int min, int max) {
-		int b = Math.min(Math.max(num, min), max);
-		return b;
+		return Math.min(Math.max(num, min), max);
 	}
 
 	// Y = (X-A)/(B-A) * (D-C) + C, thank you StackOverflow!
@@ -21,7 +20,6 @@ public class MathHelper {
 	}
 
 	public static void main(String[] args) {
-		System.out
-				.println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
+		System.out.println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
 	}
 }

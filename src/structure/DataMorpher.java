@@ -138,7 +138,7 @@ public class DataMorpher {
 
 	private MorpherRule morphData(MorpherRule morpher, DataNode dataForMorph) {
 		morpher.morph(dataForMorph);
-		log.info(morpher.toString());
+		log.info("("+dataForMorph.getNoteData() +")  "+ morpher.toString());
 		return morpher;
 	}
 
