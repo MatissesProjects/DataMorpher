@@ -2,6 +2,7 @@ package structure;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
+import enums.MorpherType;
 import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
@@ -25,25 +26,10 @@ import anticipators.Gradient;
 
 public class DataMorpher {
 
-	public enum DataMorpherTypes {
-		AddToStart, AddToEnd, ShiftDataToTheMag, DeleteSegment, ShuffleWithRepeatUsingAll,
-		ShuffleNoRepeat, ShuffleWithRepeat, AddToRandLoc, FlipSegment, TransposeData, TrimTheMode,
-		GrammarReplace, RemoveAllOfDataToken, BasicSmooth, Sort, BetterSmooth, AddDataOverSection,
-		Gradient;
-
-		public static DataMorpherTypes getMorpher(int i) {
-			if (i < 0 || i >= values().length)
-				return TransposeData;
-			return values()[i];
-		}
-
-		public static DataMorpherTypes getRandomMorpher() {
-			return getMorpher(rand.nextInt(values().length));
-		}
-	}
+	
 
 	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
-	private final int[] runs = { 10, 8, 10 };
+	// private final int[] runs = { 10, 8, 10 };
 
 	DataNode initData;
 
@@ -51,7 +37,7 @@ public class DataMorpher {
 		this.initData = new DataNode(initData);
 	}
 
-	private MorpherRule getMorph(DataMorpherTypes nextInt, DataNode noteData) {
+	private MorpherRule getMorph(MorpherType nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
 		log.finest("Number for morph occurance: " + nextInt);
@@ -93,6 +79,8 @@ public class DataMorpher {
 			return new AddDataOverSection(noteData, first, second);
 		case Gradient:
 			return new Gradient(noteData, first, second);
+		case NullMorph:
+			return new NullMorpher(noteData);
 		default:
 			log.warning("null morph occured");
 			return new NullMorpher(noteData);
@@ -117,14 +105,18 @@ public class DataMorpher {
 		return morphingRule;
 	}
 
-	public MorpherRule doSetMorphs() {
+	/**
+	 * 
+	 * @param morphsToRun
+	 * @return
+	 */
+	public MorpherRule doSetMorphs(MorpherType[] morphsToRun) {
 		log.info("Initial Data: " + initData);
 		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(MAX_MORPH_DATA)),
-				DataMorpherTypes.getMorpher(TOTAL_MORPHERS));
-		for (int i : runs) {
+				MorpherType.NullMorph);
+		for (MorpherType morph : morphsToRun) {
 			morphingRule = doMorph(morphingRule.data,
-					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))),
-					DataMorpherTypes.getMorpher(i));
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), morph);
 		}
 		return morphingRule;
 	}
@@ -138,15 +130,15 @@ public class DataMorpher {
 
 	private MorpherRule morphData(MorpherRule morpher, DataNode dataForMorph) {
 		morpher.morph(dataForMorph);
-		log.info("("+dataForMorph.getNoteData() +")  "+ morpher.toString());
+		log.info("(" + dataForMorph.getNoteData() + ")  " + morpher.toString());
 		return morpher;
 	}
 
-	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, DataMorpherTypes morphType) {
+	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, MorpherType morphType) {
 		return morphData(getMorph(morphType, noteData), toAdd);
 	}
 
 	private MorpherRule doRandomMorph(DataNode noteData, DataNode toAdd) {
-		return doMorph(noteData, toAdd, DataMorpherTypes.getRandomMorpher());
+		return doMorph(noteData, toAdd, MorpherType.getRandomMorpher());
 	}
 }

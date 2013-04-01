@@ -3,6 +3,9 @@ package structure;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import enums.MorpherType;
+
+
 public class currMain {
 	public static Logger log;
 
@@ -18,7 +21,13 @@ public class currMain {
 		// System.out.println(DataMorpher.DataMorpherTypes.AddToStart.getNum());
 
 		morphObject.doRandomMorphs();
-		morphObject.doSetMorphs();
+
+		MorpherType[] morphsToDo = { MorpherType.AddToEnd, MorpherType.AddToEnd };
+		// morphsToDo.add(MorpherType.AddToEnd);
+		// morphsToDo.add(MorpherType.BetterSmooth);
+		// morphsToDo.add(MorpherType.AddToEnd);
+		System.out.println("\n\n");
+		morphObject.doSetMorphs(morphsToDo);
 		// checkForErrors(10000);
 	}
 

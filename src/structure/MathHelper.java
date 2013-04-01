@@ -20,6 +20,7 @@ public class MathHelper {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
+		System.out
+				.println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
 	}
 }
