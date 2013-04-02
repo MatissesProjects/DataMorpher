@@ -144,7 +144,7 @@ public enum MorphType {
 	 * insertion zone. It should then attempt to smooth from the start end to the inserted data (not
 	 * smoothing the inserted data)
 	 */
-	Gradient, Constrain,
+	Gradient, Constrain, Remap,
 	/**
 	 * This is the answer to the null pointer error, lets just pass up a null morph
 	 */

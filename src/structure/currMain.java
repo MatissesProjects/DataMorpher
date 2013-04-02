@@ -1,6 +1,5 @@
 package structure;
 
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,15 +16,10 @@ public class currMain {
 		log.setLevel(Level.INFO);
 
 		DataMorpher morphObject = new DataMorpher("abcdefghi");
-
-		// System.out.println(DataMorpher.DataMorpherTypes.AddToStart.getNum());
-
+		MorphType[] morphsToDo = { MorphType.getRandomMorpher(), MorphType.getRandomMorpher(),
+				MorphType.TrimTheMode };
+		
 		morphObject.doRandomMorphs();
-
-		MorphType[] morphsToDo = { MorphType.BasicSmooth, MorphType.BasicSmooth };
-
-		System.out.println("\n\n");
-		System.out.println(Arrays.toString(morphsToDo));
 		morphObject.doSetMorphs(morphsToDo);
 		// checkForErrors(10000);
 	}

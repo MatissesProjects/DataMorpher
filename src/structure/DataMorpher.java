@@ -10,6 +10,8 @@ import morphers.addData.addToLoc.AddToStart;
 import morphers.addData.grammarRules.GrammarReplace;
 import morphers.addData.smooth.BasicSmooth;
 import morphers.addData.smooth.Sort;
+import morphers.remap.Constrain;
+import morphers.remap.Remap;
 import morphers.removingSections.DeleteSegment;
 import morphers.removingSections.RemoveAllOfDataToken;
 import morphers.removingSections.TrimTheMode;
@@ -40,8 +42,7 @@ public class DataMorpher {
 	 */
 	public DataMorpher(String initData) {
 		data = new DataNode(initData);
-		morphingRule = doMorph(data, new DataNode(getRandSet(MAX_MORPH_DATA)),
-				MorphType.NullMorph);
+		morphingRule = doMorph(data, new DataNode(getRandSet(MAX_MORPH_DATA)), MorphType.NullMorph);
 	}
 
 	/**
@@ -86,6 +87,11 @@ public class DataMorpher {
 	private MorphRule getMorph(MorphType nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
+		// char randCharF = data.get(rand.nextInt(data.length() - 1)), randCharS = data.get(rand
+		// .nextInt(data.length() - 1));
+		// char charF = (char) Math.min(randCharF, randCharS), charS = (char) Math.max(randCharF,
+		// randCharS);
+		char charF = 'b', charS = 'h';
 		log.finest("Number for morph occurance: " + nextInt);
 		switch (nextInt) {
 		case AddToStart:
@@ -123,6 +129,14 @@ public class DataMorpher {
 			return new AddDataOverSection(noteData, first, second);
 		case Gradient:
 			return new Gradient(noteData, first, second);
+		case Constrain:
+			if (second - first > 3 * data.length() / 4)
+				System.out.println("Warning distructive to data!");
+			return new Constrain(noteData, charF, charS);
+		case Remap:
+			if (second - first > 3 * data.length() / 4)
+				System.out.println("Warning distructive to data!");
+			return new Remap(noteData, charF, charS, first, second);
 		case NullMorph:
 			return new NullMorpher(noteData);
 		default:
