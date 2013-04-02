@@ -67,4 +67,15 @@ public class DataNodeHolder implements IDataHolder {
 		return null;
 	}
 
+	@Override
+	public int length() {
+		return dataNodes.size();
+	}
+
+	@Override
+	public IDataHolder get(int index) {
+		// TODO Auto-generated method stub
+		return dataNodes.get(index);
+	}
+
 }

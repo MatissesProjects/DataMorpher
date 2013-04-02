@@ -2,6 +2,7 @@ package structure;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
+import interfaces.IDataHolder;
 import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
@@ -27,10 +28,12 @@ import enums.MorphType;
 
 public class DataMorpher {
 
-	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
+	private final int MAX_MORPH_DATA = 3;
 	// private final int[] runs = { 10, 8, 10 };
 
-	private DataNode data;
+	private IDataHolder data;
+
+	// private DataNode data;
 	private MorphRule morphingRule;
 
 	/**
@@ -42,7 +45,8 @@ public class DataMorpher {
 	 */
 	public DataMorpher(String initData) {
 		data = new DataNode(initData);
-		morphingRule = doMorph(data, new DataNode(getRandSet(MAX_MORPH_DATA)), MorphType.NullMorph);
+		morphingRule = doMorph((DataNode) data, new DataNode(getRandSet(MAX_MORPH_DATA)),
+				MorphType.NullMorph);
 	}
 
 	/**
@@ -50,7 +54,7 @@ public class DataMorpher {
 	 * 
 	 * @return current data contained within this object
 	 */
-	public DataNode getData() {
+	public IDataHolder getData() {
 		return data;
 	}
 
@@ -59,9 +63,9 @@ public class DataMorpher {
 	 * 
 	 * @return
 	 */
-	public MorphRule doRandomMorphs() {
+	public MorphRule doRandomMorphs(int runs) {
 		log.info("Initial Data: " + data);
-		for (int i = 0; i < TOTAL_MORPHERS; ++i) {
+		for (int i = 0; i < runs; ++i) {
 			morphingRule = doRandomMorph(morphingRule.data,
 					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
 			data = morphingRule.data;
@@ -91,7 +95,9 @@ public class DataMorpher {
 		// .nextInt(data.length() - 1));
 		// char charF = (char) Math.min(randCharF, randCharS), charS = (char) Math.max(randCharF,
 		// randCharS);
-		char charF = 'b', charS = 'h';
+		char charF = MathHelper.getLowestInRange(new DataNode(noteData.getRange(first, second)))
+				.charAt(0), charS = MathHelper.getHighestInRange(
+				new DataNode(noteData.getRange(first, second))).charAt(0);
 		log.finest("Number for morph occurance: " + nextInt);
 		switch (nextInt) {
 		case AddToStart:

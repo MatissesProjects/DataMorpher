@@ -119,7 +119,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	public IDataHolder get(int i) {
 		return new DataNode(data.charAt(i));
 	}
-	
+
 	public char charAt(int i) {
 		return get(i).getData().charAt(0);
 	}
@@ -134,6 +134,10 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	public String getRange(int start, int end) {
 		return data.substring(start, Math.min(end, data.length()));
 	}
+
+//	public DataNode getRange(int start, int end) {
+//		return new DataNode(data.substring(start, Math.min(end, data.length())));
+//	}
 
 	public void addAll(List<DataNode> bag) {
 		for (DataNode d : bag)

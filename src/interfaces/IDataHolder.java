@@ -30,4 +30,8 @@ public interface IDataHolder {
 	 * @return
 	 */
 	public String getData();
+
+	public int length();
+
+	public IDataHolder get(int index);
 }

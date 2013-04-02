@@ -19,6 +19,30 @@ public class MathHelper {
 		return (num - fromMin) / (fromMax - fromMin) * (toMax - toMin) + toMin;
 	}
 
+	public static DataNode getLowestInRange(DataNode dataToCheck) {
+		char min = Character.MAX_VALUE;
+		for (Character ch : dataToCheck.getData().toCharArray()) {
+			if (ch < min) {
+				min = ch;
+			}
+		}
+		System.out.println(min);
+		DataNode returner = new DataNode(min);
+		return returner;
+	}
+
+	public static DataNode getHighestInRange(DataNode dataToCheck) {
+		char max = Character.MIN_VALUE;
+		for (Character ch : dataToCheck.getData().toCharArray()) {
+			if (ch > max) {
+				max = ch;
+			}
+		}
+		System.out.println(max);
+		DataNode returner = new DataNode(max);
+		return returner;
+	}
+
 	public static void main(String[] args) {
 		System.out
 				.println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
