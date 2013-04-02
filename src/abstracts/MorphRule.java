@@ -10,9 +10,9 @@ import structure.DataNode;
  * @author Matisse
  * 
  */
-public abstract class MorpherRule extends Rule<DataNode> {
+public abstract class MorphRule extends Rule<DataNode> {
 
-	public MorpherRule(DataNode ruleData) {
+	public MorphRule(DataNode ruleData) {
 		super(ruleData);
 	}
 

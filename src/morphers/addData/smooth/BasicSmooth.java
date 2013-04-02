@@ -2,9 +2,9 @@ package morphers.addData.smooth;
 
 import static structure.currMain.log;
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
-public class BasicSmooth extends MorpherRule {
+public class BasicSmooth extends MorphRule {
 
 	public BasicSmooth(DataNode ruleData) {
 		super(ruleData);

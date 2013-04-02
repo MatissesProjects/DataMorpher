@@ -2,7 +2,7 @@ package morphers.transpose;
 
 import structure.DataNode;
 import structure.MathHelper;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Takes a segment of data and flips it around
@@ -12,7 +12,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class FlipSegment extends MorpherRule {
+public class FlipSegment extends MorphRule {
 	private final int start, end;
 
 	/**

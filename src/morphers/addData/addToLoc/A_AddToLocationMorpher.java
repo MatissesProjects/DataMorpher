@@ -1,9 +1,9 @@
 package morphers.addData.addToLoc;
 
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
-public abstract class A_AddToLocationMorpher extends MorpherRule {
+public abstract class A_AddToLocationMorpher extends MorphRule {
 
 	private final int morphLocation;
 

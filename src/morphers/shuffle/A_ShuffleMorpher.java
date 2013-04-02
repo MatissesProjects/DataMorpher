@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Abstract concept of a shuffle morph<br>
@@ -15,7 +15,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public abstract class A_ShuffleMorpher extends MorpherRule {
+public abstract class A_ShuffleMorpher extends MorphRule {
 
 	protected int start, end;
 

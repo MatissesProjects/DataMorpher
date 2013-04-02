@@ -1,20 +1,20 @@
 package enums;
 
-import static structure.MathHelper.rand;;
+import static structure.MathHelper.rand;
 
-public enum MorpherType {
+public enum MorphType {
 	AddToStart, AddToEnd, ShiftDataToTheMag, DeleteSegment, ShuffleWithRepeatUsingAll,
 	ShuffleNoRepeat, ShuffleWithRepeat, AddToRandLoc, FlipSegment, TransposeData, TrimTheMode,
 	GrammarReplace, RemoveAllOfDataToken, BasicSmooth, Sort, BetterSmooth, AddDataOverSection,
 	Gradient, NullMorph;
 
-	public static MorpherType getMorpher(int i) {
+	public static MorphType getMorpher(int i) {
 		if (i < 0 || i >= values().length)
-			return TransposeData;
+			return NullMorph;
 		return values()[i];
 	}
 
-	public static MorpherType getRandomMorpher() {
+	public static MorphType getRandomMorpher() {
 		return getMorpher(rand.nextInt(values().length));
 	}
 }

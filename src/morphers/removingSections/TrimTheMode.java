@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Takes the number of separate tokens and sums them, finding the greatest one (not caring about who
@@ -17,7 +17,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class TrimTheMode extends MorpherRule {
+public class TrimTheMode extends MorphRule {
 
 	private static final String STRING_REPLACED_TO_SHORT = "abcd";
 	Map<Character, Integer> countMap;

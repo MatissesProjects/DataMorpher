@@ -4,7 +4,7 @@ import static structure.MathHelper.rand;
 import static structure.currMain.log;
 import structure.DataNode;
 import structure.MathHelper;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Takes data and shifts a subset of it by the magnitude
@@ -17,7 +17,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class ShiftDataToTheMag extends MorpherRule {
+public class ShiftDataToTheMag extends MorphRule {
 	int start, end, newMagnitude;
 
 	final int MAX_SHIFT = 2;

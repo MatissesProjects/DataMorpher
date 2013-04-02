@@ -2,7 +2,7 @@ package morphers.removingSections;
 
 import static structure.currMain.log;
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Remove all of a data token, for example
@@ -20,7 +20,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class RemoveAllOfDataToken extends MorpherRule {
+public class RemoveAllOfDataToken extends MorphRule {
 
 	/**
 	 * Useful for removing an artifact or something that doesnt seem to fit nicely, that is easy to

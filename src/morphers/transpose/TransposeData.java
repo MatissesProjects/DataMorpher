@@ -3,7 +3,7 @@ package morphers.transpose;
 import static structure.currMain.log;
 import structure.DataNode;
 import structure.MathHelper;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * This transpose is to take the data from one segment and move it to another segment.
@@ -15,7 +15,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class TransposeData extends MorpherRule {
+public class TransposeData extends MorphRule {
 
 	int beginIndex, endIndex, transposeTo;
 

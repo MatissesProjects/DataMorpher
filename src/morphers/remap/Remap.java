@@ -1,9 +1,9 @@
 package morphers.remap;
 
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
-public class Remap extends MorpherRule {
+public class Remap extends MorphRule {
 
 	/**
 	 * 

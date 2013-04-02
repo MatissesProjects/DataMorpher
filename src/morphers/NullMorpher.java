@@ -1,7 +1,7 @@
 package morphers;
 
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * This is the answer to the null pointer error, lets just pass up a null morph
@@ -9,7 +9,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class NullMorpher extends MorpherRule {
+public class NullMorpher extends MorphRule {
 
 	/**
 	 * This class really doesn't do anything, it is just a shell

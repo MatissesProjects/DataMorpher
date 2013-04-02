@@ -2,9 +2,9 @@ package anticipators;
 
 import morphers.addData.smooth.BasicSmooth;
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
-public class Gradient extends MorpherRule {
+public class Gradient extends MorphRule {
 	int start, end;
 
 	public Gradient(DataNode ruleData, int startIndex, int endIndex) {

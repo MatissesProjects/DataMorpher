@@ -7,9 +7,9 @@ import java.util.Map;
 
 import morphers.removingSections.TrimTheMode;
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
-public class BasicAnticipator extends MorpherRule {
+public class BasicAnticipator extends MorphRule {
 
 	int start, end;
 	Map<Character, Integer> countMap;

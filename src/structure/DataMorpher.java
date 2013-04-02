@@ -2,7 +2,6 @@ package structure;
 
 import static structure.MathHelper.rand;
 import static structure.currMain.log;
-import enums.MorpherType;
 import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
@@ -21,23 +20,71 @@ import morphers.shuffle.ShuffleWithRepeatUsingAll;
 import morphers.transpose.FlipSegment;
 import morphers.transpose.ShiftDataToTheMag;
 import morphers.transpose.TransposeData;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 import anticipators.Gradient;
+import enums.MorphType;
 
 public class DataMorpher {
-
-	
 
 	private final int TOTAL_MORPHERS = 18, MAX_MORPH_DATA = 3;
 	// private final int[] runs = { 10, 8, 10 };
 
-	DataNode initData;
+	private DataNode data;
+	private MorphRule morphingRule;
 
+	/**
+	 * This is the object that should be delt with mostly. It is the container to the generic morphs
+	 * 
+	 * @param initData
+	 *            This initial data is shared throughout the the livetime of this object so multiple
+	 *            morphs over a long period of time is possible
+	 */
 	public DataMorpher(String initData) {
-		this.initData = new DataNode(initData);
+		data = new DataNode(initData);
+		morphingRule = doMorph(data, new DataNode(getRandSet(MAX_MORPH_DATA)),
+				MorphType.NullMorph);
 	}
 
-	private MorpherRule getMorph(MorpherType nextInt, DataNode noteData) {
+	/**
+	 * Get the data
+	 * 
+	 * @return current data contained within this object
+	 */
+	public DataNode getData() {
+		return data;
+	}
+
+	/**
+	 * This calls upon any one of the morphs that exist within the system so far.
+	 * 
+	 * @return
+	 */
+	public MorphRule doRandomMorphs() {
+		log.info("Initial Data: " + data);
+		for (int i = 0; i < TOTAL_MORPHERS; ++i) {
+			morphingRule = doRandomMorph(morphingRule.data,
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
+			data = morphingRule.data;
+		}
+		return morphingRule;
+	}
+
+	/**
+	 * 
+	 * @param morphsToRun
+	 *            An array of MorpherType that tells this method what morphs to run
+	 * @return
+	 */
+	public MorphRule doSetMorphs(MorphType[] morphsToRun) {
+		log.info("Initial Data: " + data);
+		for (MorphType morph : morphsToRun) {
+			morphingRule = doMorph(morphingRule.data,
+					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), morph);
+		}
+		return morphingRule;
+	}
+
+	private MorphRule getMorph(MorphType nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
 		log.finest("Number for morph occurance: " + nextInt);
@@ -87,58 +134,24 @@ public class DataMorpher {
 		}
 	}
 
-	/**
-	 * This calls upon any one of the morphs that exist within the system so far.
-	 * 
-	 * @return
-	 */
-	public MorpherRule doRandomMorphs() {
-		// System.out.println("\n\n\n\nInitial Data: " + initData);
-		log.info("Initial Data: " + initData);
-		MorpherRule morphingRule = doRandomMorph(initData,
-				new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
-		for (int i = 0; i < TOTAL_MORPHERS; ++i) {
-			morphingRule = doRandomMorph(morphingRule.data,
-					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))));
-			initData = morphingRule.data;
-		}
-		return morphingRule;
-	}
-
-	/**
-	 * 
-	 * @param morphsToRun
-	 * @return
-	 */
-	public MorpherRule doSetMorphs(MorpherType[] morphsToRun) {
-		log.info("Initial Data: " + initData);
-		MorpherRule morphingRule = doMorph(initData, new DataNode(getRandSet(MAX_MORPH_DATA)),
-				MorpherType.NullMorph);
-		for (MorpherType morph : morphsToRun) {
-			morphingRule = doMorph(morphingRule.data,
-					new DataNode(getRandSet(rand.nextInt(MAX_MORPH_DATA))), morph);
-		}
-		return morphingRule;
-	}
-
 	private String getRandSet(int amount) {
 		if (amount <= 1) {
-			return initData.get(rand.nextInt(initData.length())) + "";
+			return data.get(rand.nextInt(data.length())) + "";
 		}
-		return initData.get(rand.nextInt(initData.length())) + getRandSet(amount - 1);
+		return data.get(rand.nextInt(data.length())) + getRandSet(amount - 1);
 	}
 
-	private MorpherRule morphData(MorpherRule morpher, DataNode dataForMorph) {
+	private MorphRule morphData(MorphRule morpher, DataNode dataForMorph) {
 		morpher.morph(dataForMorph);
 		log.info("(" + dataForMorph.getNoteData() + ")  " + morpher.toString());
 		return morpher;
 	}
 
-	private MorpherRule doMorph(DataNode noteData, DataNode toAdd, MorpherType morphType) {
+	private MorphRule doMorph(DataNode noteData, DataNode toAdd, MorphType morphType) {
 		return morphData(getMorph(morphType, noteData), toAdd);
 	}
 
-	private MorpherRule doRandomMorph(DataNode noteData, DataNode toAdd) {
-		return doMorph(noteData, toAdd, MorpherType.getRandomMorpher());
+	private MorphRule doRandomMorph(DataNode noteData, DataNode toAdd) {
+		return doMorph(noteData, toAdd, MorphType.getRandomMorpher());
 	}
 }

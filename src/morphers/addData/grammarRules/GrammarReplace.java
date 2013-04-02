@@ -3,7 +3,7 @@ package morphers.addData.grammarRules;
 import static structure.currMain.log;
 import structure.DataNode;
 import structure.MathHelper;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Context free grammar type rule. This should allow for things like a -> bde <br />
@@ -15,7 +15,7 @@ import abstracts.MorpherRule;
  * @Example rule:c->zim, initial=abcdefg, result=abzimdefg
  * @author Matisse
  */
-public class GrammarReplace extends MorpherRule {
+public class GrammarReplace extends MorphRule {
 
 	GrammarRule rule;
 

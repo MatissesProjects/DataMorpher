@@ -2,7 +2,7 @@ package morphers.removingSections;
 
 import structure.DataNode;
 import static structure.MathHelper.rand;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Takes the rule data and deletes a segment from start to end.
@@ -10,7 +10,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class DeleteSegment extends MorpherRule {
+public class DeleteSegment extends MorphRule {
 
 	private final int start, end;
 

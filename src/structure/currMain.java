@@ -1,10 +1,10 @@
 package structure;
 
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import enums.MorpherType;
-
+import enums.MorphType;
 
 public class currMain {
 	public static Logger log;
@@ -22,11 +22,10 @@ public class currMain {
 
 		morphObject.doRandomMorphs();
 
-		MorpherType[] morphsToDo = { MorpherType.AddToEnd, MorpherType.AddToEnd };
-		// morphsToDo.add(MorpherType.AddToEnd);
-		// morphsToDo.add(MorpherType.BetterSmooth);
-		// morphsToDo.add(MorpherType.AddToEnd);
+		MorphType[] morphsToDo = { MorphType.AddToEnd, MorphType.BetterSmooth };
+
 		System.out.println("\n\n");
+		System.out.println(Arrays.toString(morphsToDo));
 		morphObject.doSetMorphs(morphsToDo);
 		// checkForErrors(10000);
 	}

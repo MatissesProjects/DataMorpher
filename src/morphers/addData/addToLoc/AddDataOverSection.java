@@ -2,7 +2,7 @@ package morphers.addData.addToLoc;
 
 import static structure.currMain.log;
 import structure.DataNode;
-import abstracts.MorpherRule;
+import abstracts.MorphRule;
 
 /**
  * Something like a paintbrush
@@ -15,7 +15,7 @@ import abstracts.MorpherRule;
  * @author Matisse
  * 
  */
-public class AddDataOverSection extends MorpherRule {
+public class AddDataOverSection extends MorphRule {
 
 	int start, end;
 
