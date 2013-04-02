@@ -4,41 +4,41 @@ import static structure.currMain.log;
 import structure.DataNode;
 import abstracts.MorphRule;
 
+/**
+ * This takes the data from startIndex to endIndex and smooths it. (assuming start = 0, end =
+ * length) So if the data was acegi, the result would be abcdefghi. (assuming start = 0, end =
+ * length) If you entered abefi you would get abcefgi
+ * 
+ * @author Matisse
+ * 
+ */
 public class BasicSmooth extends MorphRule {
 
-	public BasicSmooth(DataNode ruleData) {
+	int start, end;
+
+	public BasicSmooth(DataNode ruleData, int startIndex, int endIndex) {
 		super(ruleData);
+		start = startIndex;
+		end = endIndex;
 	}
 
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
 		StringBuilder sb = new StringBuilder();
+		sb.append(data.getRange(0, start));
 		// compares 2 at a time, so -1 to not compare against nothing at end
-		for (int i = 0; i < data.length() - 1; ++i) {
-			
-			
-			
-			DataNode curData = new DataNode(data.get(i));
-			DataNode nextData =  new DataNode(data.get(i + 1));
-			
-			DataNode aveData = DataNode.average(curData, nextData);
-			
-			sb.append(curData.getNoteData());
-			
-			if(!aveData.equals(nextData)){
+		for (int i = start; i < Math.min(end, data.length() - 1); ++i) {
+			DataNode currData = new DataNode(data.get(i));
+			DataNode nextData = new DataNode(data.get(i + 1));
+			DataNode aveData = DataNode.average(currData, nextData);
+
+			sb.append(currData.getNoteData());
+
+			if (!aveData.equals(nextData)) {
 				sb.append(aveData.getNoteData());
 			}
-			
-			
-
-//			if (curData != nextData) {
-//				char cData = (char) ((curData + nextData) / 2);
-//				if (sb.toString().charAt(sb.length() - 1) != cData) {
-//					sb.append(cData);
-//				}
-//			}
 		}
-		sb.append(data.get(data.length() - 1));
+		sb.append(data.getRange(Math.min(end, data.length() - 1), Math.max(end, data.length() - 1)));
 		log.fine(sb.toString());
 		data.setNoteData(sb.toString());
 	}

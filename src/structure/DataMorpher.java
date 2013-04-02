@@ -9,7 +9,6 @@ import morphers.addData.addToLoc.AddToRandLoc;
 import morphers.addData.addToLoc.AddToStart;
 import morphers.addData.grammarRules.GrammarReplace;
 import morphers.addData.smooth.BasicSmooth;
-import morphers.addData.smooth.BetterSmooth;
 import morphers.addData.smooth.Sort;
 import morphers.removingSections.DeleteSegment;
 import morphers.removingSections.RemoveAllOfDataToken;
@@ -117,11 +116,9 @@ public class DataMorpher {
 		case RemoveAllOfDataToken:
 			return new RemoveAllOfDataToken(noteData);
 		case BasicSmooth:
-			return new BasicSmooth(noteData);
+			return new BasicSmooth(noteData, first, second);
 		case Sort:
 			return new Sort(noteData, first, second);
-		case BetterSmooth:
-			return new BetterSmooth(noteData);
 		case AddDataOverSection:
 			return new AddDataOverSection(noteData, first, second);
 		case Gradient:

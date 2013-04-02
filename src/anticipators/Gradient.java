@@ -16,7 +16,7 @@ public class Gradient extends MorphRule {
 	@Override
 	protected void noteMorph(DataNode morphTo) {
 		BasicSmooth smooth = new BasicSmooth(new DataNode(data.getRange(start, end)
-				+ morphTo.getNoteData()));
+				+ morphTo.getNoteData()), 0, data.length());
 		smooth.morph(null);
 		data.insertData(start, end, smooth.data);
 	}
