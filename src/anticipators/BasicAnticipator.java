@@ -23,7 +23,7 @@ public class BasicAnticipator extends MorphRule {
 	public void populateCountMap() {
 		countMap = new HashMap<Character, Integer>();
 		for (int i = 0; i < end - start + 1; ++i) {
-			Character ch = data.get(i);
+			Character ch = data.charAt(i);
 			if (countMap.containsKey(ch)) {
 				countMap.put(ch, countMap.get(ch) + 1);
 			} else {

@@ -28,7 +28,7 @@ public class Constrain extends MorphRule {
 	protected void noteMorph(DataNode input) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < data.length(); ++i) {
-			sb.append((char) MathHelper.constrain(data.get(i), min, max));
+			sb.append((char) MathHelper.constrain(data.charAt(i), min, max));
 		}
 		data.setNoteData(sb.toString());
 	}

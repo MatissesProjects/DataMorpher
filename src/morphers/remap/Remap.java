@@ -40,7 +40,7 @@ public class Remap extends MorphRule {
 		StringBuilder sb = new StringBuilder();
 		sb.append(data.getRange(0, start));
 		for (int i = start; i < Math.min(end, data.length()); ++i) {
-			sb.append((char) (((data.get(i) - top) % (bottom - top)) + top));
+			sb.append((char) (((data.charAt(i) - top) % (bottom - top)) + top));
 		}
 		sb.append(data.getRange(end, Math.max(end, data.length())));
 		data.setNoteData(sb.toString());

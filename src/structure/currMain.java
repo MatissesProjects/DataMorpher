@@ -7,6 +7,8 @@ import enums.MorphType;
 
 public class currMain {
 	public static Logger log;
+	public static final String INITIAL_DATA = "thisisatest";
+	public static final int NUM_MORPHS_TO_RUN = 15;
 
 	/**
 	 * @param args
@@ -15,19 +17,20 @@ public class currMain {
 		log = Logger.getGlobal();
 		log.setLevel(Level.INFO);
 
-		DataMorpher morphObject = new DataMorpher("abcdefghi");
+		DataMorpher morphObject = new DataMorpher(INITIAL_DATA);
 		MorphType[] morphsToDo = { MorphType.getRandomMorpher(), MorphType.getRandomMorpher(),
 				MorphType.TrimTheMode };
-		
-		morphObject.doRandomMorphs();
+
+		morphObject.doRandomMorphs(NUM_MORPHS_TO_RUN);
 		morphObject.doSetMorphs(morphsToDo);
-		// checkForErrors(10000);
+//		checkForErrors(1000);
 	}
 
 	public static void checkForErrors(int numberOfRuns) {
 		for (int i = 0; i < numberOfRuns; ++i) {
-			DataMorpher morpher = new DataMorpher("abcdefghi");
-			morpher.doRandomMorphs();
+			DataMorpher morpher = new DataMorpher(INITIAL_DATA);
+			morpher.doRandomMorphs(NUM_MORPHS_TO_RUN);
+			System.out.println(morpher.getData());
 		}
 		System.out.println("No Errors!");
 	}

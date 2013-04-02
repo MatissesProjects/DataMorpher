@@ -52,6 +52,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		return data;
 	}
 
+	@Override
 	public int length() {
 		return dataLength;
 	}
@@ -76,10 +77,10 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 
 	@Override
 	public int compareTo(DataNode other) {
-		if (get(0) > other.get(0)) {
+		if (charAt(0) > other.charAt(0)) {
 			return 1;// after 1
 		}
-		if (get(0) < other.get(0)) {
+		if (charAt(0) < other.charAt(0)) {
 			return -1;// before -1
 		}
 		return 0;// equal 0
@@ -114,8 +115,13 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	 * @param i
 	 * @return
 	 */
-	public char get(int i) {
-		return data.charAt(i);
+	@Override
+	public IDataHolder get(int i) {
+		return new DataNode(data.charAt(i));
+	}
+	
+	public char charAt(int i) {
+		return get(i).getData().charAt(0);
 	}
 
 	/**
@@ -144,7 +150,8 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 
 	public static DataNode average(DataNode currData, DataNode nextData) {
 		// TODO: fix for non-String
-		return new DataNode((char) ((currData.get(0) + nextData.get(0)) / 2));
+		return new DataNode((char) ((currData.get(0).getData().charAt(0) + nextData.get(0)
+				.getData().charAt(0)) / 2));
 	}
 
 	/**

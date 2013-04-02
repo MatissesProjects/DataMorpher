@@ -7,10 +7,10 @@ import abstracts.MorphRule;
 /**
  * Something like a paintbrush
  * 
- * @Example abcdefg<br>
- *          with inputdata = 'zy'<br>
- *          startIndex = 1<br>
- *          endIndex = 3<br>
+ * @Example abcdefg<br />
+ *          with inputdata = 'zy'<br />
+ *          startIndex = 1<br />
+ *          endIndex = 3<br />
  *          abzyczydefg
  * @author Matisse
  * 

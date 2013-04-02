@@ -84,7 +84,7 @@ public abstract class A_ShuffleMorpher extends MorphRule {
 		DataNode returner = new DataNode();
 //		returner.add(new DataNode(data.getRange(beginning, ending)));
 		for (int i = beginning; i < ending; ++i) {
-			returner.add(new DataNode(data.get(i)));
+			returner.add(new DataNode(data.charAt(i)));
 		}
 		return returner;
 	}

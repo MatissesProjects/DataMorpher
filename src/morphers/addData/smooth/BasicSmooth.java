@@ -28,8 +28,8 @@ public class BasicSmooth extends MorphRule {
 		sb.append(data.getRange(0, start));
 		// compares 2 at a time, so -1 to not compare against nothing at end
 		for (int i = start; i < Math.min(end, data.length() - 1); ++i) {
-			DataNode currData = new DataNode(data.get(i));
-			DataNode nextData = new DataNode(data.get(i + 1));
+			DataNode currData = new DataNode(data.charAt(i));
+			DataNode nextData = new DataNode(data.charAt(i + 1));
 			DataNode aveData = DataNode.average(currData, nextData);
 
 			sb.append(currData.getNoteData());
