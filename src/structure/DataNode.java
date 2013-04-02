@@ -1,5 +1,7 @@
 package structure;
 
+import interfaces.IDataHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import morphers.addData.grammarRules.GrammarRule;
  * @author Matisse
  * 
  */
-public class DataNode implements Comparable<DataNode> {
+public class DataNode implements Comparable<DataNode>, IDataHolder {
 	private String data;
 	private int dataLength;
 
@@ -140,9 +142,36 @@ public class DataNode implements Comparable<DataNode> {
 		return ret;
 	}
 
-	public static DataNode average(DataNode curData, DataNode nextData) {
-		//TODO: fix for non-String
-		return new DataNode((char) ((curData.get(0) + nextData.get(0)) / 2));
+	public static DataNode average(DataNode currData, DataNode nextData) {
+		// TODO: fix for non-String
+		return new DataNode((char) ((currData.get(0) + nextData.get(0)) / 2));
 	}
 
+	/**
+	 * This object is a dataNode, it will respond true
+	 * 
+	 * @return True, because this is a DataNode
+	 */
+	@Override
+	public boolean isDataNode() {
+		return true;
+	}
+
+	/**
+	 * This object is not a dataNodeHolder, so we return false
+	 * 
+	 * @return False, not a DataNodeHolder
+	 */
+	@Override
+	public boolean isDataNodeHolder() {
+		return false;
+	}
+
+	/**
+	 * This will return the data within this Node
+	 */
+	@Override
+	public String getData() {
+		return data;
+	}
 }
