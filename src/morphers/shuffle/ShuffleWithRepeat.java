@@ -10,8 +10,10 @@ import structure.MathHelper;
  * to put into the result, it can have repeats, and doesn't need to use all data given (and will
  * probably not)
  * 
- * @Example initialData = abcdefg <br />
- * 
+ * @Example initialData = adcbdehb <br />
+ *          start:2<br />
+ *          end:6<br />
+ *          adeedebdb
  * 
  * @author Matisse
  * 
@@ -25,7 +27,7 @@ public class ShuffleWithRepeat extends A_ShuffleMorpher {
 	@Override
 	protected DataNode thisShuffle(List<DataNode> bag) {
 		DataNode resultingData = new DataNode();
-		for (int i = 0; i <= bag.size(); ++i) {
+		for (int i = 0; i < bag.size(); ++i) {
 			int randomGrab = MathHelper.rand.nextInt(bag.size());
 			resultingData.add(bag.get(randomGrab));
 		} // shuffle the letters adding them into resultdata

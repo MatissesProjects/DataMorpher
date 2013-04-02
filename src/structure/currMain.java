@@ -22,7 +22,7 @@ public class currMain {
 
 		morphObject.doRandomMorphs();
 
-		MorphType[] morphsToDo = { MorphType.AddToEnd, MorphType.BetterSmooth };
+		MorphType[] morphsToDo = { MorphType.BasicSmooth, MorphType.BasicSmooth };
 
 		System.out.println("\n\n");
 		System.out.println(Arrays.toString(morphsToDo));

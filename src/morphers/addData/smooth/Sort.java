@@ -8,6 +8,16 @@ import java.util.List;
 import morphers.shuffle.A_ShuffleMorpher;
 import structure.DataNode;
 
+/**
+ * This takes the data and from start to end it sorts the data
+ * 
+ * @Example init: abefcgdhi <br />
+ *          start: 2 <br />
+ *          end: length <br />
+ *          result: abcdefghi
+ * @author Matisse
+ * 
+ */
 public class Sort extends A_ShuffleMorpher {
 
 	public Sort(DataNode ruleData, int start, int end) {
@@ -18,13 +28,7 @@ public class Sort extends A_ShuffleMorpher {
 	@Override
 	protected DataNode thisShuffle(List<DataNode> bag) {
 		Collections.sort(bag);
-//		Collections.reverse(bag);
 		DataNode returner = new DataNode(bag);
-		
-//		returner.addAll(bag);
-//		for (DataNode d : bag) {
-//			returner.setNoteData(returner.getNoteData() + d);
-//		}
 		log.fine("returner: " + returner);
 		return returner;
 	}

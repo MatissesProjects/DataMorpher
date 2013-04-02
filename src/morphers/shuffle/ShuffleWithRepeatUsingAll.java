@@ -6,6 +6,13 @@ import java.util.List;
 import structure.DataNode;
 import structure.MathHelper;
 
+/**
+ * This takes the data a start and an end and store it into toshuffle. While adding the data back it
+ * randomly selects from the "toshuffle" data and writes the data then deletes it from a separate
+ * list that starts = to toshuffle, but gets its components removed from. The selection process
+ * continues from toshuffle, if the item is not found in the separate data it is ignored. This is
+ * done until the separate data is empty
+ */
 public class ShuffleWithRepeatUsingAll extends A_ShuffleMorpher {
 
 	public ShuffleWithRepeatUsingAll(DataNode ruleData, int start, int end) {

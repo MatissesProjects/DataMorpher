@@ -12,7 +12,9 @@ import abstracts.MorphRule;
  * their capability to describe growth, usually shown with plants. If this sounds interesting I
  * HIGHLY recommend you check this out, it's one of the inspirations behind this project!
  * 
- * @Example rule:c->zim, initial=abcdefg, result=abzimdefg
+ * @Example rule:c->zim<br />
+ *          initial=abcdefg<br />
+ *          result=abzimdefg
  * @author Matisse
  */
 public class GrammarReplace extends MorphRule {
@@ -28,8 +30,6 @@ public class GrammarReplace extends MorphRule {
 		super(ruleData);
 		char toReplace = replacementStr.charAt(MathHelper.rand.nextInt(replacementStr.length()));
 		rule = new GrammarRule(toReplace + "", replacementStr);
-		// System.out.println("toReplace: " + toReplace);
-		// System.out.println("replacementStr: " + replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
 	}
@@ -46,8 +46,6 @@ public class GrammarReplace extends MorphRule {
 	public GrammarReplace(DataNode ruleData, String toReplace, String replacementStr) {
 		super(ruleData);
 		rule = new GrammarRule(toReplace, replacementStr);
-		// System.out.println("toReplace: " + toReplace);
-		// System.out.println("replacementStr: " + replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
 	}
