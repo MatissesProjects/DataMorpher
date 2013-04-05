@@ -15,11 +15,11 @@ public class currMain {
 	 */
 	public static void main(String[] args) {
 		log = Logger.getGlobal();
-		log.setLevel(Level.INFO);
+		log.setLevel(Level.CONFIG);
 
 		DataMorpher morphObject = new DataMorpher(INITIAL_DATA);
 		MorphType[] morphsToDo = { MorphType.getRandomMorpher(), MorphType.getRandomMorpher(),
-				MorphType.TrimTheMode };
+				MorphType.Gradient, MorphType.TrimTheMode };
 
 		morphObject.doRandomMorphs(NUM_MORPHS_TO_RUN);
 		morphObject.doSetMorphs(morphsToDo);

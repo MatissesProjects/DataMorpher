@@ -42,4 +42,12 @@ public class BasicSmooth extends MorphRule {
 		log.fine(sb.toString());
 		data.setNoteData(sb.toString());
 	}
+
+	public void setStart(int startIndex) {
+		start = startIndex;
+	}
+	
+	public void setEnd(int endIndex) {
+		end = endIndex;
+	}
 }

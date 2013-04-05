@@ -22,7 +22,7 @@ public abstract class AnticipatorRule extends Rule<DataNode> {
 	/**
 	 * This is an anticipation, called from morph, its idea is something like making the morphing
 	 * building blocks into a stronger and better concept. This is done by either changing the morph
-	 * call slightly or by adding some sort of intelegence for choosing the next morph or something
+	 * call slightly or by adding some sort of intelligence for choosing the next morph or something
 	 * along those lines.
 	 */
 	public abstract void anticipate();
