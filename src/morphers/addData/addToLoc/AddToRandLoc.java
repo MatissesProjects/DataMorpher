@@ -1,7 +1,7 @@
 package morphers.addData.addToLoc;
 
 import structure.DataNode;
-import static structure.MathHelper.rand;
+import static mathResources.MathHelper.rand;
 
 /**
  * This is an example of a note morphing rule.

@@ -1,7 +1,7 @@
 package morphers.remap;
 
+import mathResources.MathHelper;
 import structure.DataNode;
-import structure.MathHelper;
 import abstracts.MorphRule;
 
 /**

@@ -1,6 +1,10 @@
-package structure;
+package mathResources;
+
+import static structure.currMain.log;
 
 import java.util.Random;
+
+import structure.DataNode;
 
 public class MathHelper {
 	public static Random rand = new Random();
@@ -26,7 +30,7 @@ public class MathHelper {
 				min = ch;
 			}
 		}
-		System.out.println(min);
+		log.finest(min + "");
 		DataNode returner = new DataNode(min);
 		return returner;
 	}
@@ -38,10 +42,12 @@ public class MathHelper {
 				max = ch;
 			}
 		}
-		System.out.println(max);
+		log.finest(max + "");
 		DataNode returner = new DataNode(max);
 		return returner;
 	}
+	
+	
 
 	public static void main(String[] args) {
 		System.out

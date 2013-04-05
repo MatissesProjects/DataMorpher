@@ -3,8 +3,9 @@ package morphers.shuffle;
 import java.util.ArrayList;
 import java.util.List;
 
+import mathResources.MathHelper;
+
 import structure.DataNode;
-import structure.MathHelper;
 
 /**
  * This takes the data a start and an end and store it into toshuffle. While adding the data back it

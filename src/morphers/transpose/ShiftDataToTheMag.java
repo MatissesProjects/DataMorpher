@@ -1,9 +1,9 @@
 package morphers.transpose;
 
-import static structure.MathHelper.rand;
+import static mathResources.MathHelper.rand;
 import static structure.currMain.log;
+import mathResources.MathHelper;
 import structure.DataNode;
-import structure.MathHelper;
 import abstracts.MorphRule;
 
 /**

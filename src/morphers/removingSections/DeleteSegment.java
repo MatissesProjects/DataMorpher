@@ -1,7 +1,7 @@
 package morphers.removingSections;
 
 import structure.DataNode;
-import static structure.MathHelper.rand;
+import static mathResources.MathHelper.rand;
 import abstracts.MorphRule;
 
 /**

@@ -1,8 +1,9 @@
 package structure;
 
-import static structure.MathHelper.rand;
+import static mathResources.MathHelper.rand;
 import static structure.currMain.log;
 import interfaces.IDataHolder;
+import mathResources.MathHelper;
 import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
@@ -91,10 +92,6 @@ public class DataMorpher {
 	private MorphRule getMorph(MorphType nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
-		// char randCharF = data.get(rand.nextInt(data.length() - 1)), randCharS = data.get(rand
-		// .nextInt(data.length() - 1));
-		// char charF = (char) Math.min(randCharF, randCharS), charS = (char) Math.max(randCharF,
-		// randCharS);
 		char charF = MathHelper.getLowestInRange(new DataNode(noteData.getRange(first, second)))
 				.charAt(0), charS = MathHelper.getHighestInRange(
 				new DataNode(noteData.getRange(first, second))).charAt(0);

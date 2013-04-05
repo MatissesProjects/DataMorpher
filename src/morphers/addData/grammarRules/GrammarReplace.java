@@ -1,8 +1,8 @@
 package morphers.addData.grammarRules;
 
 import static structure.currMain.log;
+import mathResources.MathHelper;
 import structure.DataNode;
-import structure.MathHelper;
 import abstracts.MorphRule;
 
 /**

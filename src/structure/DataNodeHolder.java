@@ -64,6 +64,11 @@ public class DataNodeHolder implements IDataHolder {
 	 */
 	@Override
 	public String getData() {
+		for (IDataHolder currLookup : dataNodes) {
+			if (currLookup.isDataNodeHolder()) {
+				return currLookup.getData() + " ";
+			}
+		}
 		return null;
 	}
 

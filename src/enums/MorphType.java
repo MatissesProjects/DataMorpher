@@ -1,6 +1,6 @@
 package enums;
 
-import static structure.MathHelper.rand;
+import static mathResources.MathHelper.rand;
 
 /**
  * There are the types of morphs that exist within this system.

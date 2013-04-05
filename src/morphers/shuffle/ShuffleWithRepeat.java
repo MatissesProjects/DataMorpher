@@ -2,8 +2,9 @@ package morphers.shuffle;
 
 import java.util.List;
 
+import mathResources.MathHelper;
+
 import structure.DataNode;
-import structure.MathHelper;
 
 /**
  * This is a shuffle that goes from the start of the data to the end and randomly chooses which data
