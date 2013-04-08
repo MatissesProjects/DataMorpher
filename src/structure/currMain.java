@@ -7,7 +7,7 @@ import enums.MorphType;
 
 public class currMain {
 	public static Logger log;
-	public static final String INITIAL_DATA = "abcdefghijklmnopqrxtuvwxyz";
+	public static final String INITIAL_DATA = "abcdefghijklmnopqrstuvwxyz";
 	public static final int NUM_MORPHS_TO_RUN = 15;
 
 	/**

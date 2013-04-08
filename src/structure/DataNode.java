@@ -5,6 +5,7 @@ import interfaces.IDataHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import mathResources.MathHelper;
 import morphers.addData.grammarRules.GrammarRule;
 
 /**
@@ -135,9 +136,9 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		return data.substring(start, Math.min(end, data.length()));
 	}
 
-//	public DataNode getRange(int start, int end) {
-//		return new DataNode(data.substring(start, Math.min(end, data.length())));
-//	}
+	// public DataNode getRange(int start, int end) {
+	// return new DataNode(data.substring(start, Math.min(end, data.length())));
+	// }
 
 	public void addAll(List<DataNode> bag) {
 		for (DataNode d : bag)
@@ -184,5 +185,22 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	@Override
 	public String getData() {
 		return data;
+	}
+
+	@Override
+	public void setRandomData() {
+		int length = 3 + MathHelper.rand.nextInt(7);
+		data = setRandomData(length, data);
+	}
+
+	private String setRandomData(int num, String currData) {
+		if (num <= 0)
+			return currData;
+		return setRandomData(num - 1, data + MathHelper.rand.nextInt(26));
+	}
+
+	@Override
+	public void setData(IDataHolder data) {
+		this.data = data.getData();
 	}
 }

@@ -34,4 +34,8 @@ public interface IDataHolder {
 	public int length();
 
 	public IDataHolder get(int index);
+
+	public void setRandomData();
+
+	public void setData(IDataHolder data);
 }

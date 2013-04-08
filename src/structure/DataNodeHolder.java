@@ -5,6 +5,8 @@ import interfaces.IDataHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import mathResources.MathHelper;
+
 public class DataNodeHolder implements IDataHolder {
 
 	List<IDataHolder> dataNodes = new ArrayList<>();
@@ -69,7 +71,7 @@ public class DataNodeHolder implements IDataHolder {
 				return currLookup.getData() + " ";
 			}
 		}
-		return null;
+		return "No Data";
 	}
 
 	@Override
@@ -81,6 +83,27 @@ public class DataNodeHolder implements IDataHolder {
 	public IDataHolder get(int index) {
 		// TODO Auto-generated method stub
 		return dataNodes.get(index);
+	}
+
+	@Override
+	public void setRandomData() {
+		int length = 3 + MathHelper.rand.nextInt(7);
+		for (IDataHolder data : dataNodes) {
+			data = setRandomData(length, data.getData());
+		}
+
+	}
+
+	private IDataHolder setRandomData(int num, String currData) {
+		if (num <= 0)
+			return new DataNode(currData);
+		return setRandomData(num - 1, (getData() + MathHelper.rand.nextInt(26)));
+	}
+
+	@Override
+	public void setData(IDataHolder data) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
