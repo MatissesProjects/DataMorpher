@@ -38,4 +38,6 @@ public interface IDataHolder {
 	public void setRandomData();
 
 	public void setData(IDataHolder data);
+
+	public int value();
 }

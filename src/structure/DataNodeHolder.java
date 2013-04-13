@@ -106,4 +106,13 @@ public class DataNodeHolder implements IDataHolder {
 
 	}
 
+	@Override
+	public int value() {
+		int ret = 0;
+		for (IDataHolder currLookup : dataNodes) {
+			ret += currLookup.value();
+		}
+		return ret;
+	}
+
 }

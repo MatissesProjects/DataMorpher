@@ -53,11 +53,6 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		return data;
 	}
 
-	@Override
-	public int length() {
-		return dataLength;
-	}
-
 	/**
 	 * This takes the current data and adds data and
 	 * 
@@ -69,22 +64,13 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	}
 
 	/**
-	 * currently just returns the data
+	 * This takes the current data and adds data and
+	 * 
+	 * @param data
+	 * @return this added to data at end
 	 */
-	@Override
-	public String toString() {
-		return data;
-	}
-
-	@Override
-	public int compareTo(DataNode other) {
-		if (charAt(0) > other.charAt(0)) {
-			return 1;// after 1
-		}
-		if (charAt(0) < other.charAt(0)) {
-			return -1;// before -1
-		}
-		return 0;// equal 0
+	public void add(char addData) {
+		setNoteData(data + addData);
 	}
 
 	public void removeAll(DataNode dataToRemove) {
@@ -108,17 +94,6 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		setNoteData(getRange(0, start) //
 				+ aData.getNoteData() + //
 				getRange(end, length()));
-	}
-
-	/**
-	 * get data at location
-	 * 
-	 * @param i
-	 * @return
-	 */
-	@Override
-	public IDataHolder get(int i) {
-		return new DataNode(data.charAt(i));
 	}
 
 	public char charAt(int i) {
@@ -159,6 +134,28 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 				.getData().charAt(0)) / 2));
 	}
 
+	private String setRandomData(int num, String currData) {
+		if (num <= 0)
+			return currData;
+		return setRandomData(num - 1, data + MathHelper.rand.nextInt(26));
+	}
+
+	@Override
+	public int length() {
+		return dataLength;
+	}
+
+	/**
+	 * get data at location
+	 * 
+	 * @param i
+	 * @return
+	 */
+	@Override
+	public IDataHolder get(int i) {
+		return new DataNode(data.charAt(i));
+	}
+
 	/**
 	 * This object is a dataNode, it will respond true
 	 * 
@@ -193,14 +190,36 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		data = setRandomData(length, data);
 	}
 
-	private String setRandomData(int num, String currData) {
-		if (num <= 0)
-			return currData;
-		return setRandomData(num - 1, data + MathHelper.rand.nextInt(26));
-	}
-
 	@Override
 	public void setData(IDataHolder data) {
 		this.data = data.getData();
+	}
+	
+	/**
+	 * currently just returns the data
+	 */
+	@Override
+	public String toString() {
+		return data;
+	}
+
+	@Override
+	public int compareTo(DataNode other) {
+		if (charAt(0) > other.charAt(0)) {
+			return 1;// after 1
+		}
+		if (charAt(0) < other.charAt(0)) {
+			return -1;// before -1
+		}
+		return 0;// equal 0
+	}
+
+	@Override
+	public int value() {
+		int ret = 0;
+		for(Character ch : data.toCharArray()) {
+			ret += ch;
+		}
+		return ret;
 	}
 }
