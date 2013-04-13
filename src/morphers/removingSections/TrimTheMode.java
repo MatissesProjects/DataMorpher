@@ -1,10 +1,12 @@
 package morphers.removingSections;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
+import static structure.GlobalConstants.MIN_STRING_SIZE;
+import static structure.GlobalConstants.STRING_REPLACED_TO_SHORT;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import mathResources.MathHelper;
 import structure.DataNode;
 import abstracts.MorphRule;
 
@@ -18,8 +20,6 @@ import abstracts.MorphRule;
  * 
  */
 public class TrimTheMode extends MorphRule {
-
-	private static final String STRING_REPLACED_TO_SHORT = "abcd";
 	Map<Character, Integer> countMap;
 
 	/**
@@ -30,48 +30,16 @@ public class TrimTheMode extends MorphRule {
 	 */
 	public TrimTheMode(DataNode ruleData) {
 		super(ruleData);
-		populateCountMap();
-	}
-
-	/**
-	 * this takes a class map and fills it with the number of each occurance of each token. abcaa #
-	 * of {a=3, b=1, c= 1}
-	 */
-	public void populateCountMap() {
-		countMap = new HashMap<Character, Integer>();
-		for (Character ch : data.getNoteData().toCharArray()) {
-			if (countMap.containsKey(ch)) {
-				countMap.put(ch, countMap.get(ch) + 1);
-			} else {
-				countMap.put(ch, 1);
-			}
-		}
-		log.fine("countMap: " + countMap);
-	}
-
-	/**
-	 * @return the most often occurring character within the string
-	 */
-	public char getTokenToTrim() {
-		char returner = '!';// = new Character('!');
-		int currMax = -1;
-		for (Character ch : countMap.keySet()) {
-			if (countMap.get(ch) > currMax) {
-				currMax = countMap.get(ch);
-				returner = ch;
-			}
-		}
-		log.fine("returner: " + returner);
-		return returner;
+		countMap = MathHelper.populateCountMap(data);
 	}
 
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
-		char toTrim = getTokenToTrim();
+		DataNode toTrim = MathHelper.getTokenToTrim(countMap);
 		log.fine("trimming: " + toTrim);
 		// toTrim+ = the regex 1 or more
 		data.replaceAll(toTrim + "+", toTrim + "");
-		if (data.length() < 4) {
+		if (data.length() < MIN_STRING_SIZE) {
 			data.add(new DataNode(STRING_REPLACED_TO_SHORT));
 		}
 	}

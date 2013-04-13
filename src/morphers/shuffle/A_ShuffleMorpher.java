@@ -1,6 +1,6 @@
 package morphers.shuffle;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,13 +42,10 @@ public abstract class A_ShuffleMorpher extends MorphRule {
 		List<DataNode> bag = new ArrayList<>(getDataToShuffle());
 		DataNode resultingData = new DataNode();
 
-		// get the letters to shuffle
-//		bag.addAll(getDataToShuffle());
 		// add to our resulting data up to the start of our shuffle
 		resultingData.add(setData(0, start));
 
 		// shuffle the letters adding them into resultData
-//		resultingData.add(thisShuffle(bag, bag.size()));
 		resultingData.add(thisShuffle(bag));
 
 		// add to our resulting data the rest of the data
@@ -65,11 +62,6 @@ public abstract class A_ShuffleMorpher extends MorphRule {
 	 */
 	protected List<DataNode> getDataToShuffle() {
 		int cappedEnd = Math.min(data.length(), end);
-//		List<DataNode> returner = data.getRangeList(start, cappedEnd);
-//				new ArrayList<>(end - start + 1);
-//		for (int i = start; i < Math.min(data.length(), end); ++i) {
-//			returner.add(new DataNode(data.get(i)));
-//		}
 		return data.getRangeList(start, cappedEnd);
 	}
 
@@ -82,12 +74,16 @@ public abstract class A_ShuffleMorpher extends MorphRule {
 	 */
 	protected DataNode setData(int beginning, int ending) {
 		DataNode returner = new DataNode();
-//		returner.add(new DataNode(data.getRange(beginning, ending)));
 		for (int i = beginning; i < ending; ++i) {
 			returner.add(new DataNode(data.charAt(i)));
 		}
 		return returner;
 	}
 
+	/**
+	 * Generic shuffle, this is what is defined to create your shuffle. It will take from this list 
+	 * @param bag
+	 * @return
+	 */
 	protected abstract DataNode thisShuffle(List<DataNode> bag);
 }

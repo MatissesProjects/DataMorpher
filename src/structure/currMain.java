@@ -1,26 +1,27 @@
 package structure;
 
+import static structure.GlobalConstants.INITIAL_DATA;
+import static structure.GlobalConstants.NUM_MORPHS_TO_RUN;
+import static structure.GlobalConstants.log;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import enums.MorphType;
 
 public class currMain {
-	public static Logger log;
-	public static final String INITIAL_DATA = "abcdefghijklmnopqrstuvwxyz";
-	public static final int NUM_MORPHS_TO_RUN = 15;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		log = Logger.getGlobal();
-		log.setLevel(Level.CONFIG);
+		log.setLevel(Level.FINE);
 
 		DataMorpher morphObject = new DataMorpher(INITIAL_DATA);
 		MorphType[] morphsToDo = { MorphType.getRandomMorpher(), MorphType.getRandomMorpher(),
 				MorphType.Gradient, MorphType.TrimTheMode };
-
+//		log.info("\n");
 		morphObject.doRandomMorphs(NUM_MORPHS_TO_RUN);
 		morphObject.doSetMorphs(morphsToDo);
 		// checkForErrors(1000);

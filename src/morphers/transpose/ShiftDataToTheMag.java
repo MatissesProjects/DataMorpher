@@ -1,7 +1,7 @@
 package morphers.transpose;
 
 import static mathResources.MathHelper.rand;
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 import mathResources.MathHelper;
 import structure.DataNode;
 import abstracts.MorphRule;
@@ -58,7 +58,8 @@ public class ShiftDataToTheMag extends MorphRule {
 		int range = 'z' - 'a' + 1;
 		for (int i = start; i < end; ++i) {
 			char newchar = (char) ((data.charAt(i) + newMagnitude - 'a' + range) % range + 'a');
-			initialData.add(new DataNode(newchar + ""));
+			
+			initialData.add(new DataNode(newchar));
 		}
 		data.insertData(start, end, initialData);
 	}

@@ -1,7 +1,7 @@
 package morphers.remap;
 
 import structure.DataNode;
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 import abstracts.MorphRule;
 
 /**

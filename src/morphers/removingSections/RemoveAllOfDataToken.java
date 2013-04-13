@@ -1,6 +1,7 @@
 package morphers.removingSections;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
+import static structure.GlobalConstants.STRING_REPLACED_TO_SHORT;
 import structure.DataNode;
 import abstracts.MorphRule;
 
@@ -44,7 +45,7 @@ public class RemoveAllOfDataToken extends MorphRule {
 	protected void noteMorph(DataNode dataToRemove) {
 		data.removeAll(dataToRemove);
 		if (data.length() < 4) {
-			data.add(new DataNode("abcd"));
+			data.add(new DataNode(STRING_REPLACED_TO_SHORT));
 		}
 		log.fine("dataToRemove: " + dataToRemove);
 	}

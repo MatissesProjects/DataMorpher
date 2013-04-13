@@ -1,6 +1,6 @@
 package morphers.addData.smooth;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,6 +1,6 @@
 package anticipators;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 
 import java.util.HashMap;
 import java.util.Map;

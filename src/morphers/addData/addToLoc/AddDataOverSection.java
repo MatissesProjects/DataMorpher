@@ -1,6 +1,6 @@
 package morphers.addData.addToLoc;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 import structure.DataNode;
 import abstracts.MorphRule;
 

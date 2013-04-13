@@ -1,9 +1,17 @@
 package structure;
 
 import static mathResources.MathHelper.rand;
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
+
+import abstracts.MorphRule;
+import anticipators.Gradient;
+
+import enums.MorphType;
+
 import interfaces.IDataHolder;
+
 import mathResources.MathHelper;
+
 import morphers.NullMorpher;
 import morphers.addData.addToLoc.AddDataOverSection;
 import morphers.addData.addToLoc.AddToEnd;
@@ -23,9 +31,6 @@ import morphers.shuffle.ShuffleWithRepeatUsingAll;
 import morphers.transpose.FlipSegment;
 import morphers.transpose.ShiftDataToTheMag;
 import morphers.transpose.TransposeData;
-import abstracts.MorphRule;
-import anticipators.Gradient;
-import enums.MorphType;
 
 public class DataMorpher {
 

@@ -1,6 +1,6 @@
 package morphers.addData.grammarRules;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 import mathResources.MathHelper;
 import structure.DataNode;
 import abstracts.MorphRule;

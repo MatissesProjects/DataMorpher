@@ -1,6 +1,6 @@
 package abstracts;
 
-import static structure.currMain.log;
+import static structure.GlobalConstants.log;
 import interfaces.Morpher;
 
 /**

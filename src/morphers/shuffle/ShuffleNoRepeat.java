@@ -38,9 +38,7 @@ public class ShuffleNoRepeat extends A_ShuffleMorpher {
 	protected DataNode thisShuffle(List<DataNode> bag) {
 		DataNode returner = new DataNode();
 		Collections.shuffle(bag);
-		while (!bag.isEmpty()) {
-			returner.add(bag.remove(0));
-		}
+		returner.addAll(bag);
 		return returner;
 	}
 }
