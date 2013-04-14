@@ -56,6 +56,28 @@ public class MathHelper {
 	}
 
 	/**
+	 * This should set the value into a circular range, so if a number drops off either side it is
+	 * then picked back up on the other. For example 'a' - 2 = 'y'
+	 * 
+	 * @param magnitude
+	 * @param dataToModify
+	 * @param topRange
+	 * @param bottomRange
+	 * @return
+	 */
+	public static DataNode circularRangeMap(int magnitude, DataNode dataToModify,
+			DataNode topRange, DataNode bottomRange) {
+		DataNode ret = new DataNode();
+		int range = bottomRange.value() - topRange.value() + 1;
+		for (char c : dataToModify.getData().toCharArray()) {
+			char newchar = (char) ((c + magnitude - topRange.value() + range) % range + topRange
+					.value());
+			ret.add(newchar);
+		}
+		return ret;
+	}
+
+	/**
 	 * Get the lowest number from a range of data
 	 * 
 	 * @param dataToCheck
@@ -124,27 +146,8 @@ public class MathHelper {
 		return new DataNode(returner);
 	}
 
-	public static DataNode circularRangeMap(int magnitude, DataNode dataToModify,
-			DataNode topRange, DataNode bottomRange) {
-		DataNode ret = new DataNode();
-		int range = bottomRange.value() - topRange.value() + 1;
-		for (char c : dataToModify.getData().toCharArray()) {
-			char newchar = (char) ((c + magnitude - topRange.value() + range) % range + topRange
-					.value());
-			ret.add(newchar);
-		}
-		return ret;
-	}
-
 	public static void main(String[] args) {
-		// System.out
-		// .println(map(5.8, 2, 6, 10, 70) + " " + map(map(5.8, 2, 6, 10, 70), 10, 70, 2, 6));
-		Matrix m = Matrix.random(3, 3, 5);
-		System.out.println("b4:");
-		m.show();
-		m = m.transpose();
-		System.out.println();
-		System.out.println("after:");
-		m.show();
+		System.out.println(circularRangeMap(-1, new DataNode("bcdghu"), new DataNode("a"), new DataNode(
+				"f")));
 	}
 }

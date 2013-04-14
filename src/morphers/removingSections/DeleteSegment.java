@@ -44,7 +44,8 @@ public class DeleteSegment extends MorphRule {
 	 */
 	@Override
 	protected void noteMorph(DataNode NOT_USED) {
-		data.setNoteData(data.getRange(0, start) + data.getRange(end, data.length()));
+		data.setNoteData(data.getRange(0, start).getData()
+				+ data.getRange(end, data.length()).getData());
 		if (data.length() < 4) {
 			data.add(new DataNode("abcd"));
 		}

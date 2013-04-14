@@ -50,6 +50,14 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		this.data = data;
 		dataLength = data.length();
 	}
+	
+	/**
+	 * set the data of our dataholder
+	 */
+	public void setNoteData(DataNode setData) {
+		this.data = setData.data;
+		dataLength = setData.length();
+	}
 
 	public String getNoteData() {
 		return data;
@@ -88,7 +96,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	}
 
 	public void flip(int start, int end) {
-		DataNode pass = new DataNode(new StringBuilder(getRange(start, end)).reverse().toString());
+		DataNode pass = new DataNode(new StringBuilder(getRange(start, end).data).reverse().toString());
 		insertData(start, end, pass);
 	}
 
@@ -109,13 +117,13 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	 * @param end
 	 * @return
 	 */
-	public String getRange(int start, int end) {
-		return data.substring(start, Math.min(end, data.length()));
-	}
+//	public String getRange(int start, int end) {
+//		return data.substring(start, Math.min(end, data.length()));
+//	}
 
-	// public DataNode getRange(int start, int end) {
-	// return new DataNode(data.substring(start, Math.min(end, data.length())));
-	// }
+	public DataNode getRange(int start, int end) {
+		return new DataNode(data.substring(start, Math.min(end, data.length())));
+	}
 
 	public void addAll(List<DataNode> bag) {
 		for (DataNode d : bag)

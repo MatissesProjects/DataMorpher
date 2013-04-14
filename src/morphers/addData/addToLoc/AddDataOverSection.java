@@ -44,7 +44,7 @@ public class AddDataOverSection extends MorphRule {
 	}
 
 	private String appendAtInterval(DataNode input, int interval) {
-		StringBuilder sb = new StringBuilder(data.getRange(0, start));
+		StringBuilder sb = new StringBuilder(data.getRange(0, start).getData());
 		for (int i = start; i < end - interval; i += interval) {
 			// for(int getData = i; getData < i+interval; ++getData)
 			sb.append(data.getRange(i, i + interval));

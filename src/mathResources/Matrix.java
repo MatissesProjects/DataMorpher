@@ -36,7 +36,7 @@ final public class Matrix {
 		Matrix A = new Matrix(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
-				A.data[i][j] = new DataNode(Math.random() * max + "");
+				A.data[i][j] = new DataNode(MathHelper.rand.nextDouble() * max + "");
 		return A;
 	}
 

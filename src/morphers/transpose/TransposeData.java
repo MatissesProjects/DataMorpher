@@ -55,20 +55,19 @@ public class TransposeData extends MorphRule {
 	 */
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
-		DataNode transposedData = new DataNode(data.getRange(start, end));
+		DataNode transposedData = data.getRange(start, end);
 		DataNode endData = new DataNode();
-		DataNode startData = new DataNode(data.getRange(0, start));
-		DataNode lastData = new DataNode(data.getRange(Math.max(transposeLoc, end),
-				data.length()));
+		DataNode startData = data.getRange(0, start);
+		DataNode lastData = data.getRange(Math.max(transposeLoc, end), data.length());
 
 		if (end < transposeLoc) {
 			endData.setNoteData(data.getRange(end, transposeLoc));
 		}
 		data.setNoteData("" + startData + endData + transposedData + lastData);
 
-		log.finest("start: " + start + " end: " + end + " transposeTo: "
-				+ transposeLoc + "\ntransposedData: " + transposedData + " startData: " + startData
-				+ " endData: " + endData + " lastData: " + lastData);
+		log.finest("start: " + start + " end: " + end + " transposeTo: " + transposeLoc
+				+ "\ntransposedData: " + transposedData + " startData: " + startData + " endData: "
+				+ endData + " lastData: " + lastData);
 		log.fine("resulting data:  " + data + "\n\n");
 	}
 }

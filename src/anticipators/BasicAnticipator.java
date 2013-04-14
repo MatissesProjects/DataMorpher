@@ -49,7 +49,7 @@ public class BasicAnticipator extends MorphRule {
 	@Override
 	protected void noteMorph(DataNode input) {
 		// char toRemove = getTokenToTrim();
-		TrimTheMode trimmer = new TrimTheMode(new DataNode(data.getRange(start, end)));
+		TrimTheMode trimmer = new TrimTheMode(data.getRange(start, end));
 		trimmer.morph(null);
 		data.setNoteData(trimmer.data.getNoteData());
 		System.out.println("\t\t " + data);
