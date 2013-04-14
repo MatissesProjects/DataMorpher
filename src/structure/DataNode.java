@@ -16,7 +16,8 @@ import morphers.addData.grammarRules.GrammarRule;
  */
 public class DataNode implements Comparable<DataNode>, IDataHolder {
 	private String data;
-	private int dataLength;
+	private int dataLength, value;
+	private boolean valueSet;
 
 	public DataNode() {
 		this("");
@@ -30,6 +31,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	public DataNode(String data) {
 		this.data = data;
 		dataLength = data.length();
+		valueSet = false;
 	}
 
 	public DataNode(List<DataNode> dataList) {
@@ -128,6 +130,11 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		return ret;
 	}
 
+	public void setValue(int newValue) {
+		valueSet = true;
+		value = newValue;
+	}
+
 	public static DataNode average(DataNode currData, DataNode nextData) {
 		// TODO: fix for non-String
 		return new DataNode((char) ((currData.get(0).getData().charAt(0) + nextData.get(0)
@@ -194,7 +201,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	public void setData(IDataHolder data) {
 		this.data = data.getData();
 	}
-	
+
 	/**
 	 * currently just returns the data
 	 */
@@ -216,10 +223,13 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 
 	@Override
 	public int value() {
+		// if we have a value assigned to us, return that one, otherwise lets calculate a value
+		if (valueSet)
+			return value;
 		int ret = 0;
-		for(Character ch : data.toCharArray()) {
+		for (Character ch : data.toCharArray()) {
 			ret += ch;
 		}
-		return ret;
+		return ret / data.length();
 	}
 }
