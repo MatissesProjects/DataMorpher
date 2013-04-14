@@ -16,9 +16,6 @@ import abstracts.MorphRule;
  * 
  */
 public class AddDataOverSection extends MorphRule {
-
-	int start, end;
-
 	/**
 	 * Adds this data as if this were a paintbrush that is painting ontop of a background that you
 	 * can see <br>
@@ -32,9 +29,7 @@ public class AddDataOverSection extends MorphRule {
 	 * @param endIndex
 	 */
 	public AddDataOverSection(DataNode ruleData, int startIndex, int endIndex) {
-		super(ruleData);
-		start = startIndex;
-		end = endIndex;
+		super(ruleData, startIndex, endIndex);
 		log.config("start: " + start + " end: " + end);
 	}
 

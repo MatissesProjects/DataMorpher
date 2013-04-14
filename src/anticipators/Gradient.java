@@ -5,12 +5,9 @@ import structure.DataNode;
 import abstracts.MorphRule;
 
 public class Gradient extends MorphRule {
-	int start, end;
 
 	public Gradient(DataNode ruleData, int startIndex, int endIndex) {
-		super(ruleData);
-		start = startIndex;
-		end = endIndex;
+		super(ruleData, startIndex, endIndex);
 	}
 
 	@Override

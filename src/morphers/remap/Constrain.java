@@ -19,7 +19,12 @@ public class Constrain extends MorphRule {
 	int min, max;
 
 	public Constrain(DataNode ruleData, int min, int max) {
-		super(ruleData);
+		this(ruleData, min, max, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData
+				.length() / 4) + MathHelper.rand.nextInt(1 + ruleData.length() / 4));
+	}
+
+	public Constrain(DataNode ruleData, int min, int max, int startIndex, int endIndex) {
+		super(ruleData, startIndex, endIndex);
 		this.max = max;
 		this.min = min;
 	}

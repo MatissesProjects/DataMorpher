@@ -1,7 +1,7 @@
 package morphers.removingSections;
 
+import mathResources.MathHelper;
 import structure.DataNode;
-import static mathResources.MathHelper.rand;
 import abstracts.MorphRule;
 
 /**
@@ -11,8 +11,6 @@ import abstracts.MorphRule;
  * 
  */
 public class DeleteSegment extends MorphRule {
-
-	private final int start, end;
 
 	/**
 	 * Known location set, selected location or zone maybe?
@@ -25,9 +23,7 @@ public class DeleteSegment extends MorphRule {
 	 *            - End location, inclusive
 	 */
 	public DeleteSegment(DataNode ruleData, int start, int end) {
-		super(ruleData);
-		this.start = start;
-		this.end = end;
+		super(ruleData, start, end);
 	}
 
 	/**
@@ -39,9 +35,8 @@ public class DeleteSegment extends MorphRule {
 	 *            - Data for this morph
 	 */
 	public DeleteSegment(DataNode ruleData) {
-		super(ruleData);
-		start = rand.nextInt(1 + data.length() / 4);
-		end = start + rand.nextInt(1 + data.length() / 4);
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	/**

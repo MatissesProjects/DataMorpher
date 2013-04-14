@@ -29,7 +29,8 @@ public class TrimTheMode extends MorphRule {
 	 *            - Data for this morph
 	 */
 	public TrimTheMode(DataNode ruleData) {
-		super(ruleData);
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 		countMap = MathHelper.populateCountMap(data);
 	}
 

@@ -2,6 +2,7 @@ package morphers.removingSections;
 
 import static structure.GlobalConstants.log;
 import static structure.GlobalConstants.STRING_REPLACED_TO_SHORT;
+import mathResources.MathHelper;
 import structure.DataNode;
 import abstracts.MorphRule;
 
@@ -34,7 +35,8 @@ public class RemoveAllOfDataToken extends MorphRule {
 	 *            - Data for this morph
 	 */
 	public RemoveAllOfDataToken(DataNode ruleData) {
-		super(ruleData);
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	/**

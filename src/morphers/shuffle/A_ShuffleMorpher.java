@@ -16,9 +16,6 @@ import abstracts.MorphRule;
  * 
  */
 public abstract class A_ShuffleMorpher extends MorphRule {
-
-	protected int start, end;
-
 	/**
 	 * 
 	 * @param ruleData
@@ -26,10 +23,8 @@ public abstract class A_ShuffleMorpher extends MorphRule {
 	 * @param end
 	 */
 	public A_ShuffleMorpher(DataNode ruleData, int start, int end) {
-		super(ruleData);
+		super(ruleData, start, end);
 		log.finest("Start: " + start + " end: " + end);
-		this.start = Math.min(start, end);
-		this.end = Math.max(start, end);
 	}
 
 	/**

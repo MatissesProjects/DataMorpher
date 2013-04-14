@@ -4,8 +4,16 @@ import structure.DataNode;
 
 public abstract class AnticipatorRule extends Rule<DataNode> {
 
-	public AnticipatorRule(DataNode ruleData) {
-		super(ruleData);
+	/**
+	 * 
+	 * @param ruleData
+	 * @param startIndex
+	 *            - Beginning for this morph
+	 * @param endIndex
+	 *            - Ending for this morph
+	 */
+	public AnticipatorRule(DataNode ruleData, int startIndex, int endIndex) {
+		super(ruleData, startIndex, endIndex);
 		// TODO Auto-generated constructor stub
 	}
 

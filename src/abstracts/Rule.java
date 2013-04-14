@@ -20,16 +20,28 @@ public abstract class Rule<T> implements Morpher<T> {
 	 * usage state of this object
 	 */
 	private boolean morphHasOccured;
+	/**
+	 * Beginning and end of to morph, this allows the data to be sent and only a portion of it to be
+	 * changed by the morph
+	 */
+	protected int start, end;
 
 	/**
 	 * Abstract Rule, this is the idea that there is a rule to change something like F -> f+S
 	 * 
 	 * @param ident
 	 *            - identifier
+	 * @param startIndex
+	 *            - Beginning for this morph
+	 * @param endIndex
+	 *            - Ending for this morph
 	 * @param ruleData
+	 *            - Data
 	 */
-	public Rule(T ruleData) {
+	public Rule(T ruleData, int startIndex, int endIndex) {
 		data = ruleData;
+		start = Math.min(startIndex, endIndex);
+		end = Math.max(startIndex, endIndex);
 		morphHasOccured = false;
 		log.finest("data: " + data);
 	}

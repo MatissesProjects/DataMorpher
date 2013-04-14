@@ -14,12 +14,8 @@ import abstracts.MorphRule;
  */
 public class BasicSmooth extends MorphRule {
 
-	int start, end;
-
 	public BasicSmooth(DataNode ruleData, int startIndex, int endIndex) {
-		super(ruleData);
-		start = startIndex;
-		end = endIndex;
+		super(ruleData, startIndex, endIndex);
 	}
 
 	@Override
@@ -46,7 +42,7 @@ public class BasicSmooth extends MorphRule {
 	public void setStart(int startIndex) {
 		start = startIndex;
 	}
-	
+
 	public void setEnd(int endIndex) {
 		end = endIndex;
 	}

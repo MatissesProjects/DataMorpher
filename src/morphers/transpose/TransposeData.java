@@ -17,7 +17,7 @@ import abstracts.MorphRule;
  */
 public class TransposeData extends MorphRule {
 
-	int beginIndex, endIndex, transposeTo;
+	int transposeLoc;
 
 	/**
 	 * This transpose is to take the data from one segment and move it to another segment of known
@@ -25,19 +25,17 @@ public class TransposeData extends MorphRule {
 	 * 
 	 * @param ruleData
 	 *            - Data for this morph
-	 * @param beginIndex
+	 * @param start
 	 *            - Starting index for the data to move
-	 * @param endIndex
+	 * @param end
 	 *            - End index of the data to move
 	 * @param transposeTo
 	 *            - Location within the current data to transpose the data selected by {begin,
 	 *            end}index
 	 */
-	public TransposeData(DataNode ruleData, int beginIndex, int endIndex, int transposeTo) {
-		super(ruleData);
-		this.endIndex = Math.max(beginIndex, endIndex);
-		this.beginIndex = Math.min(beginIndex, endIndex);
-		this.transposeTo = transposeTo;
+	public TransposeData(DataNode ruleData, int start, int end, int transposeTo) {
+		super(ruleData, start, end);
+		transposeLoc = transposeTo;
 	}
 
 	/**
@@ -47,14 +45,9 @@ public class TransposeData extends MorphRule {
 	 * @param ruleData
 	 */
 	public TransposeData(DataNode ruleData) {
-		super(ruleData);
-		beginIndex = MathHelper.rand.nextInt(1 + data.length() / 4);
-		endIndex = beginIndex + MathHelper.rand.nextInt(1 + data.length() / 4);
-		transposeTo = MathHelper.rand.nextInt(data.length());
-
-		endIndex = Math.max(beginIndex, endIndex);
-		beginIndex = Math.min(beginIndex, endIndex);
-
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
+		transposeLoc = MathHelper.rand.nextInt(data.length());
 	}
 
 	/**
@@ -62,19 +55,19 @@ public class TransposeData extends MorphRule {
 	 */
 	@Override
 	protected void noteMorph(DataNode DONT_CARE) {
-		DataNode transposedData = new DataNode(data.getRange(beginIndex, endIndex));
+		DataNode transposedData = new DataNode(data.getRange(start, end));
 		DataNode endData = new DataNode();
-		DataNode startData = new DataNode(data.getRange(0, beginIndex));
-		DataNode lastData = new DataNode(data.getRange(Math.max(transposeTo, endIndex),
+		DataNode startData = new DataNode(data.getRange(0, start));
+		DataNode lastData = new DataNode(data.getRange(Math.max(transposeLoc, end),
 				data.length()));
 
-		if (endIndex < transposeTo) {
-			endData.setNoteData(data.getRange(endIndex, transposeTo));
+		if (end < transposeLoc) {
+			endData.setNoteData(data.getRange(end, transposeLoc));
 		}
 		data.setNoteData("" + startData + endData + transposedData + lastData);
 
-		log.finest("beginIndex: " + beginIndex + " endIndex: " + endIndex + " transposeTo: "
-				+ transposeTo + "\ntransposedData: " + transposedData + " startData: " + startData
+		log.finest("start: " + start + " end: " + end + " transposeTo: "
+				+ transposeLoc + "\ntransposedData: " + transposedData + " startData: " + startData
 				+ " endData: " + endData + " lastData: " + lastData);
 		log.fine("resulting data:  " + data + "\n\n");
 	}

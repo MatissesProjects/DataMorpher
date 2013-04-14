@@ -1,5 +1,6 @@
 package morphers.remap;
 
+import mathResources.MathHelper;
 import structure.DataNode;
 import static structure.GlobalConstants.log;
 import abstracts.MorphRule;
@@ -12,7 +13,7 @@ import abstracts.MorphRule;
  */
 public class Remap extends MorphRule {
 
-	int top, bottom, start, end;
+	int top, bottom;
 
 	/**
 	 * 
@@ -25,7 +26,8 @@ public class Remap extends MorphRule {
 	 * @param endIndex
 	 */
 	public Remap(DataNode ruleData, int topLimit, int bottomLimit, int startIndex, int endIndex) {
-		super(ruleData);
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 		top = topLimit;
 		bottom = bottomLimit;
 		start = startIndex;
@@ -33,6 +35,17 @@ public class Remap extends MorphRule {
 		if (top == bottom)
 			bottom++;
 		log.finest(top + " " + bottom + " " + start + " " + end);
+	}
+	
+	/**
+	 * Constructor for a random start and ending, with known top and bottom limits
+	 * @param ruleData
+	 * @param topLimit
+	 * @param bottomLimit
+	 */
+	public Remap(DataNode ruleData, int topLimit, int bottomLimit) {
+		this(ruleData, topLimit, bottomLimit, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	@Override

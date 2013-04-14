@@ -26,12 +26,17 @@ public class GrammarReplace extends MorphRule {
 	 * @param ruleData
 	 * @param replacementStr
 	 */
-	public GrammarReplace(DataNode ruleData, String replacementStr) {
-		super(ruleData);
+	public GrammarReplace(DataNode ruleData, String replacementStr, int startIndex, int endIndex) {
+		super(ruleData, startIndex, endIndex);
 		char toReplace = replacementStr.charAt(MathHelper.rand.nextInt(replacementStr.length()));
 		rule = new GrammarRule(toReplace + "", replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
+	}
+
+	public GrammarReplace(DataNode ruleData, String replacementStr) {
+		this(ruleData, replacementStr, MathHelper.rand.nextInt(1 + ruleData.length() / 4),
+				(ruleData.length() / 4) + MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	/**
@@ -43,11 +48,18 @@ public class GrammarReplace extends MorphRule {
 	 * @param toReplace
 	 * @param replacementStr
 	 */
-	public GrammarReplace(DataNode ruleData, String toReplace, String replacementStr) {
-		super(ruleData);
+	public GrammarReplace(DataNode ruleData, String toReplace, String replacementStr,
+			int startIndex, int endIndex) {
+		super(ruleData, startIndex, endIndex);
 		rule = new GrammarRule(toReplace, replacementStr);
 		log.fine("toReplace: " + toReplace);
 		log.fine("replacementStr: " + replacementStr);
+	}
+
+	public GrammarReplace(DataNode ruleData, String toReplace, String replacementStr) {
+		this(ruleData, toReplace, replacementStr, MathHelper.rand.nextInt(1 + ruleData
+				.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	@Override

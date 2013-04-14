@@ -11,13 +11,10 @@ import abstracts.MorphRule;
 
 public class BasicAnticipator extends MorphRule {
 
-	int start, end;
 	Map<Character, Integer> countMap;
 
 	public BasicAnticipator(DataNode ruleData, int startIndex, int endIndex) {
-		super(ruleData);
-		start = startIndex;
-		end = endIndex;
+		super(ruleData, startIndex, endIndex);
 	}
 
 	public void populateCountMap() {

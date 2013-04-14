@@ -14,7 +14,7 @@ public abstract class A_AddToLocationMorpher extends MorphRule {
 	 * @param morphLocation
 	 */
 	public A_AddToLocationMorpher(DataNode ruleData, int morphLocation) {
-		super(ruleData);
+		super(ruleData, 0, ruleData.length());
 		this.morphLocation = morphLocation;
 	}
 

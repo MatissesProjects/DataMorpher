@@ -1,7 +1,8 @@
 package morphers.transpose;
 
-import static mathResources.MathHelper.rand;
 import static structure.GlobalConstants.log;
+import static structure.GlobalConstants.MAX_SHIFT;
+import static mathResources.MathHelper.rand;
 import mathResources.MathHelper;
 import structure.DataNode;
 import abstracts.MorphRule;
@@ -18,9 +19,7 @@ import abstracts.MorphRule;
  * 
  */
 public class ShiftDataToTheMag extends MorphRule {
-	int start, end, newMagnitude;
-
-	final int MAX_SHIFT = 2;
+	int newMagnitude;
 
 	/**
 	 * the new magnitude is the direction the shift occurs in.
@@ -38,16 +37,13 @@ public class ShiftDataToTheMag extends MorphRule {
 	 *            - direction to shift the data
 	 */
 	public ShiftDataToTheMag(DataNode ruleData, int start, int end, int newMagnitude) {
-		super(ruleData);
-		this.start = start;
-		this.end = end;
+		super(ruleData, start, end);
 		this.newMagnitude = Math.max(newMagnitude, MAX_SHIFT);
 	}
 
 	public ShiftDataToTheMag(DataNode ruleData) {
-		super(ruleData);
-		start = rand.nextInt(1 + data.length() / 4);
-		end = start + rand.nextInt(1 + data.length() / 4);
+		super(ruleData, rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ rand.nextInt(1 + ruleData.length() / 4));
 		newMagnitude = MathHelper.plusOrMinus(MAX_SHIFT);
 		log.fine("start: " + start + " end: " + end + " newMagnitude: " + newMagnitude);
 	}
@@ -58,7 +54,6 @@ public class ShiftDataToTheMag extends MorphRule {
 		int range = 'z' - 'a' + 1;
 		for (int i = start; i < end; ++i) {
 			char newchar = (char) ((data.charAt(i) + newMagnitude - 'a' + range) % range + 'a');
-			
 			initialData.add(new DataNode(newchar));
 		}
 		data.insertData(start, end, initialData);

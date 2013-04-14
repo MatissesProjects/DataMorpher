@@ -17,7 +17,7 @@ public class NullMorpher extends MorphRule {
 	 * @param ruleData
 	 */
 	public NullMorpher(DataNode ruleData) {
-		super(ruleData);
+		super(ruleData, 0, 0);
 	}
 
 	/**

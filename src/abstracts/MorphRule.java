@@ -12,8 +12,16 @@ import structure.DataNode;
  */
 public abstract class MorphRule extends Rule<DataNode> {
 
-	public MorphRule(DataNode ruleData) {
-		super(ruleData);
+	/**
+	 * 
+	 * @param ruleData
+	 * @param startIndex
+	 *            - Beginning for this morph
+	 * @param endIndex
+	 *            - Ending for this morph
+	 */
+	public MorphRule(DataNode ruleData, int startIndex, int endIndex) {
+		super(ruleData, startIndex, endIndex);
 	}
 
 	/**

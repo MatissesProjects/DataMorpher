@@ -13,7 +13,6 @@ import abstracts.MorphRule;
  * 
  */
 public class FlipSegment extends MorphRule {
-	private final int start, end;
 
 	/**
 	 * Takes data from a known {start, end}index and flips it
@@ -27,10 +26,7 @@ public class FlipSegment extends MorphRule {
 	 * @Note if start > end, this will automatically flip it
 	 */
 	public FlipSegment(DataNode ruleData, int start, int end) {
-		super(ruleData);
-
-		this.start = Math.min(start, end);
-		this.end = Math.max(start, end);
+		super(ruleData, start, end);
 	}
 
 	/**
@@ -42,9 +38,8 @@ public class FlipSegment extends MorphRule {
 	 * @param ruleData
 	 */
 	public FlipSegment(DataNode ruleData) {
-		super(ruleData);
-		start = MathHelper.rand.nextInt(1 + data.length() / 4);
-		end = start + MathHelper.rand.nextInt(1 + data.length() / 4);
+		super(ruleData, MathHelper.rand.nextInt(1 + ruleData.length() / 4), (ruleData.length() / 4)
+				+ MathHelper.rand.nextInt(1 + ruleData.length() / 4));
 	}
 
 	/**
