@@ -6,5 +6,6 @@ public class GlobalConstants {
 
 	public static Logger log;
 	public static final String INITIAL_DATA = "abcdefghijklmnopqrstuvwxyz", STRING_REPLACED_TO_SHORT = "abcd";
-	public static final int NUM_MORPHS_TO_RUN = 15, MIN_STRING_SIZE = 4, MAX_SHIFT = 2;;
+	public static final int NUM_MORPHS_TO_RUN = 15, MIN_STRING_SIZE = 4, MAX_SHIFT = 2,
+			MIN_CHAR_DISTANCE = 3;
 }

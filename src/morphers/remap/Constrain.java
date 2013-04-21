@@ -27,6 +27,7 @@ public class Constrain extends MorphRule {
 		super(ruleData, startIndex, endIndex);
 		this.max = max;
 		this.min = min;
+//		System.out.println("min: " + min + " max: " + max + " " + startIndex + " " + endIndex);
 	}
 
 	@Override

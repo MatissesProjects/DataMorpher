@@ -140,11 +140,23 @@ public enum MorphType {
 	 */
 	AddDataOverSection,
 	/**
-	 * Still needs to be implemented. Should take a data and a start index, end index, and an
-	 * insertion zone. It should then attempt to smooth from the start end to the inserted data (not
-	 * smoothing the inserted data)
+	 * Should take a data and a start index, end index, and an insertion zone. It should then
+	 * attempt to smooth from the start end to the inserted data (not smoothing the inserted data)
 	 */
-	Gradient, Constrain, Remap,
+	Gradient,
+	/**
+	 * Constrains a the data within a range
+	 */
+	Constrain,
+	/**
+	 * Remaps the data from one number space to another ie (1-100 to 1-10)
+	 */
+	Remap,
+	// /**
+	// * This should set the value into a circular range, so if a number drops off either side it is
+	// * then picked back up on the other. For example 'a' - 2 = 'y' and bottom limits
+	// */
+	// CircularRemap,
 	/**
 	 * This is the answer to the null pointer error, lets just pass up a null morph
 	 */
