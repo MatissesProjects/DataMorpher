@@ -36,7 +36,7 @@ final public class Matrix {
 		Matrix A = new Matrix(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
-				A.data[i][j] = new DataNode(MathHelper.rand.nextDouble() * max + "");
+				A.data[i][j] = new DataNode(MathHelper.rand.nextDouble() * max);
 		return A;
 	}
 
@@ -45,11 +45,9 @@ final public class Matrix {
 		Matrix I = new Matrix(N, N);
 		for (int i = 0; i < N; ++i) {
 			for (int j = 0; j < N; ++j) {
-				I.data[i][j] = new DataNode("0");
-				I.data[i][j].setValue(0);
+				I.data[i][j] = new DataNode(0);
 			}
-			I.data[i][i].setData(new DataNode("1"));
-			I.data[i][i].setValue(1);
+			I.data[i][i].setData(new DataNode(1));
 		}
 		return I;
 	}
@@ -78,8 +76,7 @@ final public class Matrix {
 		Matrix C = new Matrix(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
-				C.data[i][j] = new DataNode((char) (A.data[i][j].value() + B.data[i][j].value())
-						+ "");
+				C.data[i][j] = new DataNode((char) (A.data[i][j].value() + B.data[i][j].value()));
 		return C;
 	}
 
@@ -91,7 +88,7 @@ final public class Matrix {
 		Matrix C = new Matrix(M, N);
 		for (int i = 0; i < M; i++)
 			for (int j = 0; j < N; j++)
-				C.data[i][j] = new DataNode(A.data[i][j].value() - B.data[i][j].value() + "");
+				C.data[i][j] = new DataNode(A.data[i][j].value() - B.data[i][j].value());
 		return C;
 	}
 
@@ -118,7 +115,7 @@ final public class Matrix {
 			for (int k = 0; k < A.N; k++)
 				// C.data[i][j] = new DataNode(A.data[i][k].value() * B.data[k][j].value() +
 				// "");
-				C.data[k][j] = new DataNode(A.data[k][j].value() * B.data[k][j].value() + "");
+				C.data[k][j] = new DataNode(A.data[k][j].value() * B.data[k][j].value());
 		return C;
 	}
 
@@ -128,7 +125,7 @@ final public class Matrix {
 		Matrix C = new Matrix(A.M, A.N);
 		for (int j = 0; j < C.N; j++)
 			for (int k = 0; k < A.N; k++)
-				C.data[k][j] = new DataNode(data[k][j].value() * B + "");
+				C.data[k][j] = new DataNode(data[k][j].value() * B);
 		return C;
 	}
 
@@ -193,9 +190,9 @@ final public class Matrix {
 
 	// test client
 	public static void main(String[] args) {
-		DataNode[][] d = { { new DataNode(1 + ""), new DataNode(2 + ""), new DataNode(3 + "") },
-				{ new DataNode(4 + ""), new DataNode(5 + ""), new DataNode(6 + "") },
-				{ new DataNode(7 + ""), new DataNode(8 + ""), new DataNode(9 + "") } };
+		DataNode[][] d = { { new DataNode(1), new DataNode(2), new DataNode(3) },
+				{ new DataNode(4), new DataNode(5), new DataNode(6) },
+				{ new DataNode(7), new DataNode(8), new DataNode(9) } };
 		Matrix D = new Matrix(d);
 		D.show();
 		System.out.println();

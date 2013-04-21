@@ -55,27 +55,31 @@ public class MathHelper {
 		return (num - fromMin) / (fromMax - fromMin) * (toMax - toMin) + toMin;
 	}
 
-	/**
-	 * This should set the value into a circular range, so if a number drops off either side it is
-	 * then picked back up on the other. For example 'a' - 2 = 'y'
-	 * 
-	 * @param magnitude
-	 * @param dataToModify
-	 * @param topRange
-	 * @param bottomRange
-	 * @return
-	 */
-	public static DataNode circularRangeMap(int magnitude, DataNode dataToModify,
-			DataNode topRange, DataNode bottomRange) {
-		DataNode ret = new DataNode();
-		int range = bottomRange.value() - topRange.value() + 1;
-		for (char c : dataToModify.getData().toCharArray()) {
-			char newchar = (char) ((c + magnitude - topRange.value() + range) % range + topRange
-					.value());
-			ret.add(newchar);
-		}
-		return ret;
-	}
+//	/**
+//	 * This should set the value into a circular range, so if a number drops off either side it is
+//	 * then picked back up on the other. For example 'a' - 2 = 'y'
+//	 * 
+//	 * @param magnitude
+//	 * @param dataToModify
+//	 * @param topRange
+//	 * @param bottomRange
+//	 * @return
+//	 */
+//	public static DataNode circularRangeMap(int magnitude, DataNode dataToModify,
+//			DataNode topRange, DataNode bottomRange) {
+//		DataNode ret = new DataNode();
+//		int range = bottomRange.value() - topRange.value() + 1;
+//		System.out.println("dataToModify: " + dataToModify);
+//		System.out.println("topRange: " + topRange);
+//		System.out.println("bottomRange: " + bottomRange);
+//		System.out.println("range: " + range);
+//		for (char c : dataToModify.getData().toCharArray()) {
+//			char newchar = (char) (((c + magnitude - topRange.value()) + range) % range + topRange
+//					.value());
+//			ret.add(newchar);
+//		}
+//		return ret;
+//	}
 
 	/**
 	 * Get the lowest number from a range of data
@@ -147,7 +151,7 @@ public class MathHelper {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(circularRangeMap(-1, new DataNode("bcdghu"), new DataNode("a"), new DataNode(
-				"f")));
+//		System.out.println(circularRangeMap(0, new DataNode("bcdghu"), new DataNode("a"), new DataNode(
+//				"f")));
 	}
 }
