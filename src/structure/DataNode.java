@@ -16,8 +16,7 @@ import morphers.addData.grammarRules.GrammarRule;
  */
 public class DataNode implements Comparable<DataNode>, IDataHolder {
 	private String data;
-	private int dataLength, value;
-	private boolean valueSet;
+	private int dataLength;
 
 	public DataNode() {
 		this("");
@@ -31,7 +30,6 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	public DataNode(String data) {
 		this.data = data;
 		dataLength = data.length();
-		valueSet = false;
 	}
 
 	public DataNode(List<DataNode> dataList) {
@@ -43,6 +41,14 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		this(c + "");
 	}
 
+	public DataNode(int i) {
+		this(i + "");
+	}
+
+	public DataNode(double d) {
+		this(d + "");
+	}
+
 	/**
 	 * set the data of our dataholder
 	 */
@@ -50,7 +56,7 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 		this.data = data;
 		dataLength = data.length();
 	}
-	
+
 	/**
 	 * set the data of our dataholder
 	 */
@@ -96,7 +102,8 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	}
 
 	public void flip(int start, int end) {
-		DataNode pass = new DataNode(new StringBuilder(getRange(start, end).data).reverse().toString());
+		DataNode pass = new DataNode(new StringBuilder(getRange(start, end).data).reverse()
+				.toString());
 		insertData(start, end, pass);
 	}
 
@@ -117,9 +124,9 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	 * @param end
 	 * @return
 	 */
-//	public String getRange(int start, int end) {
-//		return data.substring(start, Math.min(end, data.length()));
-//	}
+	// public String getRange(int start, int end) {
+	// return data.substring(start, Math.min(end, data.length()));
+	// }
 
 	public DataNode getRange(int start, int end) {
 		return new DataNode(data.substring(start, Math.min(end, data.length())));
@@ -136,11 +143,6 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 			ret.add(new DataNode(data.charAt(i)));
 		}
 		return ret;
-	}
-
-	public void setValue(int newValue) {
-		valueSet = true;
-		value = newValue;
 	}
 
 	public static DataNode average(DataNode currData, DataNode nextData) {
@@ -232,10 +234,14 @@ public class DataNode implements Comparable<DataNode>, IDataHolder {
 	@Override
 	public int value() {
 		// if we have a value assigned to us, return that one, otherwise lets calculate a value
-		if (valueSet)
-			return value;
+		// if (valueSet)
+		// return value;
 		int ret = 0;
 		for (Character ch : data.toCharArray()) {
+			if (ch >= '0' || ch <= '9') {
+				ret += ch - '0';
+				// System.out.println((ch - '0'));
+			}
 			ret += ch;
 		}
 		return ret / data.length();

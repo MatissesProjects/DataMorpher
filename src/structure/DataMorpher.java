@@ -2,6 +2,7 @@ package structure;
 
 import static mathResources.MathHelper.rand;
 import static structure.GlobalConstants.log;
+import static structure.GlobalConstants.MIN_CHAR_DISTANCE;
 import interfaces.IDataHolder;
 import mathResources.MathHelper;
 import morphers.NullMorpher;
@@ -12,7 +13,6 @@ import morphers.addData.addToLoc.AddToStart;
 import morphers.addData.grammarRules.GrammarReplace;
 import morphers.addData.smooth.BasicSmooth;
 import morphers.addData.smooth.Sort;
-import morphers.remap.CircularRemap;
 import morphers.remap.Constrain;
 import morphers.remap.Remap;
 import morphers.removingSections.DeleteSegment;
@@ -93,8 +93,11 @@ public class DataMorpher {
 	private MorphRule getMorph(MorphType nextInt, DataNode noteData) {
 		int first = rand.nextInt(noteData.length() / 4 + 1);
 		int second = 1 + first + rand.nextInt(noteData.length() / 2 + 1);
-		char charF = MathHelper.getLowestInRange(noteData.getRange(first, second)).charAt(0), charS = MathHelper
-				.getHighestInRange(noteData.getRange(first, second)).charAt(0);
+		char charF = MathHelper.getLowestInRange(noteData.getRange(first, second)).charAt(0);
+		char charS = MathHelper.getHighestInRange(noteData.getRange(first, second)).charAt(0);
+		if (charS - charF <= MIN_CHAR_DISTANCE) {// make sure we are not cutting the data down
+			charS += MIN_CHAR_DISTANCE; // should put us beyond the min distance
+		}
 		log.finest("Number for morph occurance: " + nextInt);
 		switch (nextInt) {
 		case AddToStart:
@@ -133,15 +136,15 @@ public class DataMorpher {
 		case Gradient:
 			return new Gradient(noteData, first, second);
 		case Constrain:
-			if (second - first > 3 * data.length() / 4)
-				System.out.println("Warning distructive to data!");
+			// if (second - first > 3 * data.length() / 4)
+			// System.out.println("Warning distructive to data!");
 			return new Constrain(noteData, charF, charS);
 		case Remap:
-			if (second - first > 3 * data.length() / 4)
-				System.out.println("Warning distructive to data!");
+			// if (second - first > 3 * data.length() / 4)
+			// System.out.println("Warning distructive to data!");
 			return new Remap(noteData, charF, charS, first, second);
-		case CircularRemap:
-			return new CircularRemap(noteData, charF, charS);
+			// case CircularRemap:
+			// return new CircularRemap(noteData, charF, charS);
 		case NullMorph:
 			return new NullMorpher(noteData);
 		default:
