@@ -129,6 +129,19 @@ final public class Matrix {
 		return C;
 	}
 
+	public static Matrix rotateRight(Matrix toTransform) {
+		Matrix returner = new Matrix(toTransform.N, toTransform.M);
+		for (int i = 0; i < toTransform.N; ++i) {
+			for (int j = 0; j < toTransform.M; ++j) {
+				// System.out.print("(" + (toTransform.N - j - 1) + " , " + i + ") ");
+				returner.data[i][j] = toTransform.data[toTransform.M - j - 1][i];
+			}
+			// System.out.println();
+		}
+		// returner.show();
+		return returner;
+	}
+
 	// return x = A^-1 b, assuming A is square and has full rank
 	// public Matrix solve(Matrix rhs) {
 	// if (M != N || rhs.M != N || rhs.N != 1)
@@ -190,12 +203,19 @@ final public class Matrix {
 
 	// test client
 	public static void main(String[] args) {
-		DataNode[][] d = { { new DataNode(1), new DataNode(2), new DataNode(3) },
-				{ new DataNode(4), new DataNode(5), new DataNode(6) },
-				{ new DataNode(7), new DataNode(8), new DataNode(9) } };
+		DataNode[][] d = { { new DataNode(0), new DataNode(1), new DataNode(1) },
+				{ new DataNode(0), new DataNode(0), new DataNode(1) },
+				{ new DataNode(0), new DataNode(1), new DataNode(1) },
+				{ new DataNode(1), new DataNode(0), new DataNode(1) }, };
 		Matrix D = new Matrix(d);
 		D.show();
 		System.out.println();
+
+		for (int i = 0; i < 3; ++i) {
+			D = Matrix.rotateRight(D);
+			D.show();
+			System.out.println();
+		}
 
 		Matrix A = Matrix.random(5, 5, 10);
 		A.show();

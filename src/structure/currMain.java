@@ -20,7 +20,7 @@ public class currMain {
 
 		DataMorpher morphObject = new DataMorpher(INITIAL_DATA);
 		MorphType[] morphsToDo = { MorphType.getRandomMorpher(), MorphType.getRandomMorpher(),
-				MorphType.CircularRemap, MorphType.TrimTheMode };
+				MorphType.TrimTheMode };
 		// log.info("\n");
 		morphObject.doRandomMorphs(NUM_MORPHS_TO_RUN);
 		morphObject.doSetMorphs(morphsToDo);
